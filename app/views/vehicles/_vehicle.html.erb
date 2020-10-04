@@ -1,0 +1,13 @@
+<div class="col-sm-4" id="car-rental-<%#= car_rental.id %>">
+  <div class="package-item">
+    <a href="<%= car_rental_vehicle_path(vehicle.car_rental,vehicle) %>">
+      <div class="hotel-room-thumbnail">
+        <%= image_tag vehicle.vehicle_pictures[0],class: "hotel-cover-photo-thumbnail", alt:'Hotel Room' %>
+      </div>
+      <div class="package-content">
+        <h5>Starting: <span>$<%= vehicle.rent_self %></span> / PER </h5>
+        <h3><a href="#"><%= vehicle.vehicle_type %></a></h3>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Edit Profile</h2>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <% if car_rental_owner.errors.any? %>
+        <ul>
+          <% car_rental_owner.errors.full_messages.each do |message| %>
+            <p style="color: red"><%= message %></p>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="col-md-10">
+        <div class="booking-form booking-outer">
+          <%= form_for([:dashboard, car_rental_owner], local: true) do |form| %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :company_name, style: 'text-transform: capitalize',class:"label-login"  %>
+                <%= form.text_field :company_name, style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :company_logo, style: 'text-transform: capitalize',class:"label-login"  %>
+                <%= form.file_field :company_logo, style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="comment-btn">
+                  <%= form.submit 'Update Profile', class: "btn-blue btn-red" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+

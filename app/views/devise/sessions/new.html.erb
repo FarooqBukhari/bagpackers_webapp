@@ -1,0 +1,136 @@
+<!-- Breadcrumb -->
+<!--<section class="breadcrumb-outer text-center">-->
+<!--  <div class="container">-->
+<!--    <div class="breadcrumb-content">-->
+<!--      <h2>Login/Register Page</h2>-->
+<!--      <nav aria-label="breadcrumb">-->
+<!--        <ul class="breadcrumb">-->
+<!--          <li class="breadcrumb-item"><a href="#">Home</a></li>-->
+<!--          <li class="breadcrumb-item active" aria-current="page">Login Page</li>-->
+<!--        </ul>-->
+<!--      </nav>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="section-overlay"></div>-->
+<!--</section>-->
+<!-- BreadCrumb Ends -->
+
+<section class="login" style=" background-image: url('<%= asset_path '1KhapluPalace.jpeg' %>') ; background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover; margin: 0 auto!important;  text-align: center!important;" >
+  <div class="container "  style="   background-color:#ffffff;  margin-top:-60px;  width: fit-content !important; text-align: center!important;">
+    <div class="row"  style="width: fit-content !important;">
+      <div>
+        <div class="login-form" style=" width:400px !important; ;text-align: center!important; margin: 0 auto!important;">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="row">
+
+              <div>
+                <div class="form-title " style= "margin-bottom: 10px !important; text-align: center">
+                  <h2>Login</h2>
+                  <p>Welcome Back.</p>
+                  <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+                  <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+                </div>
+              </div>
+              <div>
+                <label>Username</label>
+
+                <%= f.email_field :email, autofocus: true,  required:"true", autocomplete: "email", class:"form-control", type: "email" ,placeholder:"Enter Email "%>
+
+              </div>
+              <div >
+                <label>Password</label>
+
+                      <span>
+                        <%= f.password_field :password, required:"true", autocomplete: "current-password", class:"form-control pwd", type: "password" ,placeholder:"Enter correct password" %>
+                </span>
+                      <a href="#" style="float: right; font-size:12px" class=" forgotpw reveal">Show Password</a>
+
+                   </div>
+              <div>
+                  <% if devise_mapping.rememberable? %>
+                  <div class="checkbox-outer">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                  </div>
+                <% end %>
+              </div>
+              <div style="color: red">
+                <% if flash[:alert] %>
+                  * <%= flash[:alert] %>
+                <% end %>
+              </div>
+
+              <div >
+                <div class="comment-btn" style="text-align: center">
+                  <%= f.submit "Log in",type:'submit' ,class:"btn-blue btn-red" %>
+                </div>
+                <%= render "devise/shared/forgetpassword" %>
+                <div class="login-accounts">
+                  <div class="reg_separator_wrap"><div class="reg_separator newRegFormButtonStyles"><span class="separator_text">OR</span> </div></div>
+                  <div class="login-accounts-btn " style="text-align: center">
+
+                    Don't have an account <%= render "devise/shared/links" %>
+<!--                    <a class="btn-blue" href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Log in with Facebook</a>-->
+<!--                    <a class="btn-blue btn-google" href="#"><i class="fa fa-google" aria-hidden="true"></i> Log in with Google</a>-->
+                  </div>
+              </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!--<div id="wrapper-content">-->
+<!--    < MAIN CONTENT-->
+<!--    <div class="main-content">-->
+<!--      <section class="page-login">-->
+<!--        <div class="container wrapper-login">-->
+<!--          <div class="content-login">-->
+<!--            <div class="main-login">-->
+              <%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<!--                <div class="logo-login">-->
+<!--                  <a href="<%#= root_path %>" class="logo-black img-container">-->
+                    <%#= image_tag '', class:'img img-reponsive form-logo', alt:'' %>
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <div class="login-title">login to your explore.com account!</div>-->
+<!--              <div class="login-form">-->
+<!--                <div class="row">-->
+<!--                  <div class="col-md-12">-->
+<!--                    <div class="form-login">-->
+<!--                      <div class="input-login field">-->
+<!--                        <%#= f.label :email, class:"label-login" %><i class="form-icon fa fa-asterisk"></i><br />-->
+                        <%#= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control label-input", type: "email"%>
+<!--                      </div>-->
+<!--                      <div class="input-login field">-->
+<!--                        <%#= f.label :password, class:"label-login" %><i class="form-icon fa fa-asterisk"></i><br />-->
+                        <%#= f.password_field :password, autocomplete: "current-password", class:"form-control label-input", type: "password" %>
+<!--                      </div>-->
+                      <%# if devise_mapping.rememberable? %>
+<!--                        <div class="field">-->
+                          <%#= f.check_box :remember_me %>
+                          <%#= f.label :remember_me %>
+<!--                        </div>-->
+                      <%# end %>
+<!--                      <div class="contact-submit">-->
+                          <%#= f.submit "Log in",type:'submit' ,class:"btn" %>
+<!--                      </div>-->
+                      <%#= render "devise/shared/links" %>
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+              <%# end %>
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--    </div>-->
+<!--  </div>-->

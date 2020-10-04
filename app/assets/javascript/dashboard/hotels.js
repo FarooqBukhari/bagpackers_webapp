@@ -1,0 +1,9 @@
+//= require ../theme_files/jquery-3.2.1.min.js
+//= require ../theme_files/bootstrap.min.js
+//= require ../theme_files/preloader.js
+//= require ../theme_files/main.js
+//= require ../theme_files/chart.js
+//= require ../theme_files/canvasjs.min.js
+//= require ../theme_files/dashboard-custom.js
+//= require ../theme_files/jpanelmenu.min.js
+//= require ../theme_files/counterup.min.js

@@ -1,0 +1,115 @@
+<!-- Navigation Bar -->
+<div class="navigation ">
+  <div class="container">
+    <div class="navigation-content">
+      <div class="header_menu">
+        <!-- start Navbar (Header) -->
+        <nav class="navbar navbar-default navbar-sticky-function navbar-arrow row">
+          <div class="logo pull-left col-md-2">
+            <a href="<%= root_path %>"><%= image_tag 'logo_bagpackers.png', style: "height: 50px; width: 50px" %></a>
+          </div>
+          <div id="navbar" class="navbar-nav-wrapper col-md-10">
+            <ul class="nav navbar-nav" id="responsive-menu">
+              <li class="active">
+                <a href="<%= root_path %>">Home <i class=""></i></a>
+              </li>
+              <li>
+                <a href="<%= tours_path %>">Tours<i class=""></i></a>
+              </li>
+              <li>
+                <a href="<%= hotels_path %>">Hotels <i class=""></i></a>
+              </li>
+              <li>
+                <a href="<%= locations_path %>"><i class=""></i> Location<i class=""></i></a>
+              </li>
+              <li>
+                <a href="#">Social
+                  <i class="fa fa-angle-down"></i>
+                </a>
+                <ul>
+                  <li>
+                    <a href="<%= feed_path %>">Feed  <i class=""></i></a>
+                  </li>
+                  <li>
+                    <a href="<%= messages_index_path %>">Messages <i class=""></i></a>
+                  </li>
+                  <li>
+                    <a href="<%= blogs_path %>"> Blogs </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">Ogranizers
+                  <i class="fa fa-angle-down"></i>
+                </a>
+                <ul>
+                  <li>
+                    <a href="<%= trip_organizers_path %>">Trip Organizers  <i class=""></i></a>
+                  </li>
+                  <li>
+                    <a href="<%= hotel_managers_path %>">Hotel Managers <i class=""></i></a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="<%= about_index_path %>">About <i class=""></i></a>
+              </li>
+              <li>
+                <a href="<%= contact_index_path %>"><i class=""></i> Contact<i class=""></i></a>
+              </li>
+
+<!--              <li>-->
+<!--                <a href="<%#= car_rentals_path %>"> Car Rentals </a>-->
+<!--              </li>-->
+              <% if !(user_signed_in?) %>
+                <li>
+                  <a href="#">User
+                    <i class="fa fa-angle-down"></i>
+                  </a>
+                  <ul>
+              <li>
+                <a href="<%= new_user_session_path %>">Login <i class=""></i></a>
+              </li>
+              <li>
+                <a href="<%= new_user_registration_path	 %>">Register <i class=""></i></a>
+              </li>
+                  </ul>
+                </li>
+              <% else %>
+<!--                <li>-->
+                  <%#= link_to Notification.unread_count(current_user), notifications_path, remote:"true" %>
+<!--                </li>-->
+                <li>
+                <% if current_user.profile_picture.attached? %>
+                <%= image_tag url_for(current_user.profile_picture), style:"border-radius: 50%; height: 30px; width: 30px; margin-top:8px;", class:"main-menu"%>
+                  <i class="fa fa-angle-down"></i>
+                <% else %>
+                  <%= image_tag "user_default.png", style:"border-radius: 50%; height: 30px; width: 30px; margin-top:8px;", class:"main-menu"%>
+                    <i class="fa fa-angle-down"></i>
+                  <% end %>
+                <ul>
+                  <li><a href="<%= user_path(current_user) %>">Profile</a></li>
+                  <% if current_user.is_trip_organizer? %>
+                    <li><a href="<%= dashboard_trip_organizers_path%>"> Tour Dashboard </a></li>
+                  <% end %>
+                  <% if current_user.is_hotel_manager? %>
+                    <li><a href="<%= dashboard_hotel_managers_path%>"> Hotel Dashboard </a></li>
+                  <% end %>
+                  <%# if current_user.is_car_rental_owner? %>
+<!--                    <li><a href="<%#= dashboard_car_rental_owners_path%>"> Car Rental Dashboard </a></li>-->
+                  <%# end %>
+                  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete%></li>
+                </ul>
+              </li>
+              <% end %>
+            </ul>
+          </div><!--/.nav-collapse -->
+          <div id="slicknav-mobile"></div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navigation Bar Ends -->

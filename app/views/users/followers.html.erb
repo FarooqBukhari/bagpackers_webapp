@@ -1,0 +1,43 @@
+<main>
+  <div class="main-wrapper">
+    <%= render 'profile_view' %>
+    <!-- sendary menu start -->
+    <div class="menu-secondary">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="secondary-menu-wrapper secondary-menu-2 bg-white">
+              <div class="page-title-inner">
+                <h4 class="page-title">followers (<%= @followers.count %>)</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- sendary menu end -->
+
+    <!-- photo section start -->
+    <div class="friends-section mt-20" id="user-<%= @user.id %>">
+      <div id="followers">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="content-box friends-zone">
+                <div class="row mt--20 friends-list">
+                  <%= render(@followers) || render('shared/no_resource', resources: 'Followers')  %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= render 'shared/paginate', resources: @followers %>
+    </div>
+    <!-- photo section end -->
+  </div>
+</main>
+
+
+
+

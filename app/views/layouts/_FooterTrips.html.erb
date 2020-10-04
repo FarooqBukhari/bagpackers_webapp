@@ -1,0 +1,14 @@
+<% tours.each do |tour| %>
+<li>
+  <div class="recent-post-item">
+    <div class="recent-post-image">
+      <%= image_tag (url_for tour.image) %>
+
+    </div>
+    <div class="recent-post-content">
+      <h4><a href="<%= tour_path(tour) %>"><%= tour.title %></a></h4>
+
+    </div>
+  </div>
+</li>
+<%end %>

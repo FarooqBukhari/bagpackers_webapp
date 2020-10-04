@@ -1,0 +1,26 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info hotels %>
+  </div>
+  <% hotels.each do |hotel| %>
+    <div class="col-md-4 col-sm-6 col-xs-12" id="hotel-<%= hotel.id %>">
+      <div class="package-item">
+        <a href="<%= hotel_path(hotel) %>">
+          <div class="hotel-thumbnail">
+            <% if hotel.hotel_cover_photos.attached? %>
+              <%= image_tag url_for(hotel.hotel_cover_photos[0])  , class: "hotel-cover-photo-thumbnail", alt:"Image"%>
+            <% else %>
+              <%= image_tag url_for("")  , class: "hotel-cover-photo-thumbnail", alt:"Image" %>
+            <% end %>
+          </div>
+          <div class="package-content">
+            <h5>Contact: <span><%= hotel.number %></span></h5>
+            <h3><a href="<%= hotel_path(hotel) %>"><%= hotel.name %></a></h3>
+            <p><%= hotel.address %></p>
+            <p> <i class="flaticon-maps-and-flags"></i> <%= hotel.location.name %> </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>

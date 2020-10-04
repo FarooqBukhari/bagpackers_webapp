@@ -1,0 +1,35 @@
+<div class="card" style="padding: 5px;">
+  <div class="share-box-inner">
+    <!-- profile picture end -->
+    <div class="post-comment" style="width: 100%;">
+      <div id="comment-<%= comment.id %>" class="row" style="width: 100%;">
+        <a href="<%= user_path(comment.user) %>" >
+          <div class="info col-2 text-center">
+            <div class="profile-thumb">
+              <figure class="profile-thumb-middle">
+                <% if comment.user.profile_picture.attached? %>
+                <img src="<%= rails_blob_url(comment.user.profile_picture) %>" alt="profile picture">
+                <% else %>
+                  <img src="<%= image_path 'user_default' %>" alt="profile picture">
+                <% end %>
+              </figure>
+            </div>
+          </div>
+        </a>
+        <div class="col-9">
+          <h6 class="name"><a href="<%= user_path(comment.user) %>" ><%= comment.user.name %></a></h6>
+          <p class="text"><%= comment.comment %></p>
+        </div>
+        <div class="content col-1">
+          <div class="pull-right">
+            <% if belongs_to_user?(comment) %>
+              <%= link_to comment_path(comment.id), method: :delete, class: 'btn btn-danger btn-sm', remote: true do %>
+                <%= fa_icon 'trash' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

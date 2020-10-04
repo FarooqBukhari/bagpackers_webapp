@@ -1,0 +1,194 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Tour Organizer Details</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%=tours_path %>">Tour</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Tour Organizer</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="main-content detail">
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @trip_organizer.company_name%></h2>
+              <p class="detail-info-price">Total Tours: <span class="bold"><%= @trip_organizer.tours.count  %></span></p>
+              <div class="deal-rating">
+                <% (@trip_organizer.tour_reviews.average(:rating)).to_i.times do %>
+                <span class="fa fa-star checked"></span>
+                <% end %>
+                <% (5 - (@trip_organizer.tour_reviews.average(:rating)).to_i).times do %>
+                  <span class="fa fa-star-o"></span>
+                <% end %>
+
+              </div>
+<!--              <div class="col-lg-3 col-sm-6">-->
+<!--                <div class="circle-tile ">-->
+<!--                  <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-star fa-fw fa-3x"></i></div></a>-->
+<!--                  <div class="circle-tile-content dark-blue">-->
+<!--                    <div class="circle-tile-description text-faded"> Rating</div>-->
+<!--                    <div class="circle-tile-number text-faded "> <%#= @trip_organizer.tour_reviews.average(:rating) %> / 5 </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <!-- 1st Indicator -->
+                <li data-target="#in_th_030" data-slide-to="0" class="active">
+                  <!-- 1st Indicator Image -->
+                  <img src="<%= url_for @trip_organizer.company_logo %>"/>
+                </li>
+
+              </ol> <!-- /Indicators -->
+              <!-- Wrapper For Slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First Slide -->
+                <div class="item active">
+                  <!-- Slide Background -->
+                  <img src="<%= url_for @trip_organizer.company_logo %>"/>
+                </div>
+                <!-- End of Slide -->
+              </div> <!-- End of Wrapper For Slides -->
+            </div> <!-- End Paradise Slider -->
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>About </h3>
+            </div>
+            <div class="description-content">
+              <p> <%= @trip_organizer.about.html_safe %> </p>
+            </div>
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Terms & Conditions </h3>
+            </div>
+            <div class="description-content">
+              <p> <%= @trip_organizer.terms.html_safe %> </p>
+            </div>
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Cancellation Policy </h3>
+            </div>
+            <div class="description-content">
+              <p> <%= @trip_organizer.cancellation_policy.html_safe %> </p>
+            </div>
+          </div>
+          <div class="top-attractions detail-box">
+            <div class="detail-title">
+              <h3>Tours Organized By Us</h3>
+            </div>
+            <div class="top-attraction-content">
+              <% @trip_organizer.tours.each do |tour| %>
+              <div class="att-item clearfix">
+                <a href="<%= tour_path(tour) %>">
+                <div class="att-image">
+                  <%= image_tag url_for(tour.trip_images[0]), alt: 'img'%>
+                </div>
+                <div class="att-content">
+                  <div class="att-content-left">
+                    <h4><%= tour.title %></h4>
+                    <ul>
+                      <li><i class="fa fa-check" aria-hidden="true"></i>Date: <%= tour.date %></li>
+                      <li><i class="fa fa-check" aria-hidden="true"></i>Seats: <%= tour.seats %></li>
+                    </ul>
+                  </div>
+                  <div class="att-content-right" style="margin-bottom: 5px!important;">
+                    <p style="text-align: center!important;margin-top: -10px!important;">Cost per Seat: <span class="bold"><%= tour.price %></span></p>
+                    <p style="text-align: center!important;margin-top: -10px!important;">Duration: <span class="bold"><%= tour.duration %></span></p>
+
+                  </div>
+                </div>
+                </a>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="comments detail-box">
+            <div class="detail-title">
+              <h3>Comments</h3>
+            </div>
+            <div class="comment-content" id="review_box">
+              <% if @tour_reviews.empty? %>
+                <div class="comment-item">
+                  No yet Rated!
+                </div>
+              <% end %>
+              <% @tour_reviews.each do |review| %>
+                <%= render "hotel_reviews/hotel_review", review: review  %>
+              <% end %>
+              <div id="hotel_review_paginate">
+                <%= paginate @tour_reviews %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item sidebar-item-dark" id="organizer_contact">
+            <div class="detail-title">
+              <h3>Basic Information</h3>
+            </div>
+            <form>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value=" Email: <%= @trip_organizer.company_email %>" readonly>
+                </div>
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value="Address: <%= @trip_organizer.address %>" readonly>
+                </div>
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value="URL: <%= @trip_organizer.url %>" readonly>
+                </div>
+                <div class="form-group col-xs-8">
+                  <input type="email" class="form-control" value="Contact Number: <%= @trip_organizer.company_number %>" readonly>
+                </div>
+                <div class="form-group col-xs-8">
+                  <% if @trip_organizer.user !=  current_user %>
+                  <%= link_to "Message", conversations_path(user_id: @trip_organizer.user.id), remote: true, method: :post, class: "btn btn-blue" %>
+                  <% end %>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-item ">
+            <div class="detail-title">
+              <h3>More Organizers</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% @trip_organizers.each do |trip_organizer| %>
+                <%= render "trip_organizers/related_trip_organizers", trip_organizer: trip_organizer %>
+              <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Feel free to contact the organizer on the provided information</p>
+              <p> Happy Travelling !</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

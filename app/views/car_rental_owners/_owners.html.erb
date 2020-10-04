@@ -1,0 +1,22 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info carrentalowners %>
+  </div>
+  <% carrentalowners.each do |owner| %>
+    <div class="col-sm-4">
+      <div class="package-item">
+        <div class="package-image" style="width: 100%; height: 300px;">
+          <img src=" <%= url_for(owner.company_logo)%>" style="height: 100%;"alt="Image">
+        </div>
+        
+        <!--      <h3 style="margin-bottom:20px; height: 10px !important;"><%#=organizer.company_name%></h3>-->
+        <!--        <p class="package-days"><i class="flaticon-time"></i> <%#=recommended_tour.duration%> Days</p>-->
+        <div class="package-info">
+          <h3 style="margin-bottom: 30px"><%=owner.company_name%></h3>
+          <a style="margin-bottom: 30px" href="<%= car_rental_owner_path(owner)%>" class="btn-blue btn-red">View more details</a>
+        </div>
+
+      </div>
+    </div>
+  <%end %>
+</div>

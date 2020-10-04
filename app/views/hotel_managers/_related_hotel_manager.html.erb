@@ -1,0 +1,13 @@
+<div class="sidebar-package">
+  <div class="sidebar-package-image">
+    <img src="<%= url_for hotel_manager.company_logo %>" alt="Images">
+  </div>
+  <div class="destination-content sidebar-package-content">
+    <h4><a href="<%= hotel_path hotel_manager %>"> <%= hotel_manager.company_name %> </a></h4>
+    <div class="deal-rating">
+      <p> Reviews : <span class="bold"><%= hotel_manager.hotel_reviews.count  %> </span> </p>
+    </div>
+    <p><i class="flaticon-box"></i> Hotels count  <span class="bold"> <%= hotel_manager.hotels.count %> </span> </p>
+    <a href="<%= hotel_path hotel_manager %>" class="btn-blue btn-red">View Now</a>
+  </div>
+</div>

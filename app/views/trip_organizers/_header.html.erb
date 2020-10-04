@@ -1,0 +1,63 @@
+<div class="expert-block padding-top">
+  <div class="row">
+    <div class="col-md-3 hidden-xs">
+
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <div class="about-us-wrapper">
+        <div class="avatar" style="width: auto; height: auto;">
+          <% if !@trip_organizer.company_logo.attached? %>
+            <div class="image-wrapper"><%= image_tag '', alt:"", class:"img img-responsive", style:"height: 130px; width: 130px" %></div>
+          <% else %>
+            <div class="image-wrapper"><%= image_tag url_for(@trip_organizer.company_logo), alt:"", class:"img img-responsive", style:"height: 130px; width: 130px" %></div>
+          <% end %>
+          <div class="content-wrapper">
+            <p class="name">
+              <a href="<%= trip_organizer_path(id: @trip_organizer.id) %>">
+                <%= @trip_organizer.company_name %>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 hidden-xs">
+
+    </div>
+  </div>
+  <div class="row group-list contact-list">
+    <div class="col-md-3 col-sm-12 col-contact mt-5">
+      <div class="media contact-list-media">
+        <div class="media-left"><p  class="icons"><i class="fa fa-phone"></i></p></div>
+        <div class="media-right"><p  class="title">Phone</p>
+
+          <p class="text"> <%= @trip_organizer.company_number %> </p></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-12 col-contact mt-5">
+      <div class="media contact-list-media">
+        <div class="media-left"><p  class="icons"><i class="fa fa-location-arrow"></i></p></div>
+        <div class="media-right"><p  class="title">Address</p>
+
+          <p class="text"> <%= @trip_organizer.address %> </p></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-12 col-contact mt-5">
+      <div class="media contact-list-media">
+        <div class="media-left"><a class="icons"><i class="fa fa-envelope-o"></i></a></div>
+        <div class="media-right"><a class="title">Email</a>
+
+          <p class="text"> <%= @trip_organizer.company_email %> </p></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-12 col-contact mt-5">
+      <div class="media contact-list-media">
+        <div class="media-left"><a class="icons"><i class="fa fa-globe"></i></a></div>
+        <div class="media-right"><a class="title">Website</a>
+
+          <a class="text" href="<%= @trip_organizer.url %>"> <%= @trip_organizer.company_name %> </a></div>
+      </div>
+    </div>
+  </div>
+</div>

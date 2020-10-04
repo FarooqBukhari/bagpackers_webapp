@@ -1,0 +1,2 @@
+$("#tour_details_box").innerText = "";
+$("#tour_details_box").html("<%= escape_javascript(render "dashboard/hotels/form", hotel: @hotel, hotel_facilities: @hotel_facilities, keys: @keys )%>");

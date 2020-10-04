@@ -1,0 +1,91 @@
+<!-- Timeline
+  ================================================= -->
+<div class="timeline" style="margin-top: -10px">
+  <% if @user.cover.attached? %>
+    <div class="timeline-cover" style="background-image: url(<%= url_for @user.cover %>);">
+  <% else %>
+    <div class="timeline-cover" style="background-image: url(<%= asset_path ''  %>);">
+  <% end %>
+  <!--Timeline Menu for Large Screens-->
+  <div class="timeline-nav-bar hidden-sm hidden-xs">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="profile-info">
+          <%= link_to user_path(@user) do %>
+            <% if @user.profile_picture.attached? %>
+              <%= image_tag url_for(@user.profile_picture) || 'avatar.jpg', class: 'img-responsive profile-photo' %>
+            <% end %>
+          <% end %>
+          <h3><%= link_to @user.name, @user %></h3>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <ul class="list-inline profile-menu">
+          <li><%= link_to "Timeline", @user, class: 'active' %></li>
+          <li><%= link_to 'Followers', followers_user_path(@user) %></li>
+          <li><%= link_to 'Friends', friends_user_path(@user) %></li>
+          <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
+          <li><%= link_to 'Change password', edit_user_registration_path %></li>
+          <li><%= link_to 'Deactivate', deactivate_user_path(@user) %></li>
+          <li> <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "main-menu" %> </li>
+
+        </ul>
+        <ul class="follow-me list-inline">
+          <li>
+            <%= Follow.where('followable_id =' +@user.id.to_s).count %>
+            people following
+          </li>
+          <li>
+            <% unless is_current_user?(@user) %>
+              <%= render 'follows/form', user: @user %>
+              <h6><%= 'Follows you' if current_user.followed_by?(@user) %></h6>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div><!--Timeline Menu for Large Screens End-->
+
+  <!--Timeline Menu for Small Screens-->
+  <div class="navbar-mobile hidden-lg hidden-md">
+    <div class="profile-info">
+      <%= link_to user_path(@user) do %>
+        <% if @user.profile_picture.attached? %>
+          <%= image_tag url_for(@user.profile_picture) || 'avatar.jpg', class: 'img-responsive profile-photo' %>
+        <% end %>
+      <% end %>
+      <h4><%= link_to @user.name, @user %></h4>
+    </div>
+    <div class="mobile-menu">
+      <ul class="list-inline">
+        <li><%= link_to "Timeline", @user, class: 'active' %></li>
+        <li><%= link_to 'Followers', followers_user_path(@user) %></li>
+        <li><%= link_to 'Friends', friends_user_path(@user) %></li>
+      </ul>
+      <% unless is_current_user?(@user) %>
+        <%= render 'follows/form', user: @user %>
+        <h6><%= 'Follows you' if current_user.followed_by?(@user) %></h6>
+      <% end %>
+    </div>
+  </div><!--Timeline Menu for Small Screens End-->
+
+  </div>
+  </div>
+  <div id="user-<%= @user.id %>" class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+      <%= render 'posts/post_edit', local: @post %>
+    </div>
+    <div class="col-lg-3">
+      <%= render 'shared/links' , user:current_user%>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

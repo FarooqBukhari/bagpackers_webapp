@@ -1,0 +1,236 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Blogs by Bagpacers</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<!-- Listing -->
+<section class="blog-list grid-list">
+  <div class="container">
+    <div class="filter-form">
+      <%#
+        Filterrific adds the `form_for_filterrific` view helper:
+        * adds dom id 'filterrific_filter'
+        * applies javascript behaviors:
+            * AJAX form submission on change
+            * AJAX spinner while AJAX request is being processed
+        * sets form_for options like :url, :method and input name prefix
+      %>
+      <%= form_for_filterrific @filterrific do |f| %>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            Search
+            <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed'
+                ) %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            Location
+            <%= f.select(
+                    :with_locations_id,
+                    @filterrific.select_options[:with_locations_id],
+                    { include_blank: '- Any -' },
+                    class: "js-example-basic-single"
+                ) %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <%= link_to(
+                    'Reset filters',
+                    reset_filterrific_url,
+                    ) %>
+          </div>
+          <%# add an automated spinner to your form when the list is refreshed %>
+          <%= render_filterrific_spinner %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <div class="blog-wrapper">
+          <div class="row">
+              <%= render "blogs/blog", blogs: @blogs, col: "6" %>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="pagination-content digg_pagination">
+            <div class="pagination" id="blog-paginate" >
+              <%= js_will_paginate @blogs %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4 col-sm-12">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="item-sidebar">
+            <div class="sidebar-item sidebar-item-dark">
+              <div class="detail-title">
+                <h3>Search</h3>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <input type="text" class="form-control" id="Name" placeholder="Enter the place you want to search">
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="comment-btn">
+                      <a href="#" class="btn-blue btn-red">Search Now</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="post-categories sidebar-item">
+              <div class="detail-title">
+                <h3>Categories</h3>
+              </div>
+              <ul>
+                <li><a href="#">Science</a></li>
+                <li><a href="#">Management</a></li>
+                <li><a href="#">Humanities</a></li>
+                <li><a href="#">Arts</a></li>
+                <li><a href="#">Biology</a></li>
+                <li><a href="#">Technology</a></li>
+              </ul>
+            </div>
+            <div class="recent-post clearfix sidebar-item">
+              <div class="detail-title">
+                <h3>Recent Posts</h3>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/profile1.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-blue">#News</a>
+                  <h4><a href="#">10 Tips you should follow</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent2.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-gold">#News</a>
+                  <h4><a href="#">Must have gadgets in life</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent1.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-green">#Health</a>
+                  <h4><a href="#">Selena, The talk of town</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent2.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-blue">#News</a>
+                  <h4><a href="#">Why Zlatan left United?</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ad1 sidebar-item">
+              <div class="detail-title">
+                <h3>Popular Tags</h3>
+              </div>
+              <div class="popular-tag-content">
+                <ul>
+                  <li><a href="#">Flights</a></li>
+                  <li><a href="#">Trek</a></li>
+                  <li><a href="#">Travelling</a></li>
+                  <li><a href="#">Cruises</a></li>
+                  <li><a href="#">Sale</a></li>
+                  <li><a href="#">Hotels</a></li>
+                  <li><a href="#">Restaurants</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="popular-post sidebar-item">
+              <div class="detail-title">
+                <h3>Popular Posts</h3>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">01</span>
+                  <h4><a href="#">7 reasons Hollywood doesn’t make romantic comedies anymore</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">02</span>
+                  <h4><a href="#">Watch: the 3 best performances of the 2018 VMAs</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">03</span>
+                  <h4><a href="#">Why conservatives love to hate Alexandria?</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">04</span>
+                  <h4><a href="#">10 Tips you should follow before eating street foods</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Listing Ends -->

@@ -1,0 +1,155 @@
+<!--<h1>New Custom Trip</h1>-->
+
+<%#= render 'form', custom_trip: @custom_trip %>
+
+<%#= link_to 'Back', custom_trips_path %>
+
+
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Request Your Custom Trip</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Request Your Custom Trip</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="booking-form booking-outer">
+          <%= form_with(model: @custom_trip, local: true, class: "custom-form" ) do |form|  %>
+            <%= render 'devise/shared/error_messages', resource:@custom_trip %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <label>Number of Travelers</label>
+                <%= form.number_field :seats,placeholder:"Number of Travelers", style: 'text-transform: capitalize', class:"form-control",  min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :child, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :child,placeholder:"Child", style: 'text-transform: capitalize; ', class:"form-control",  min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :room, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :room,placeholder:"Room", style: 'text-transform: capitalize; ', class:"form-control",  min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6 ">
+                <label>Number of Days</label>
+                <%= form.number_field :number_of_days,placeholder:"Number of Days", style: 'text-transform: capitalize; ', class:"form-control",  min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :location, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.text_field :location,placeholder:"Location", style: 'text-transform: capitalize; ', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :departure_city, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.text_field :departure_city,placeholder:"Departure City", style: 'text-transform: capitalize;', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-5">
+                <label>Departure Date</label>
+                <%= form.date_field :departure_date,placeholder:"Departure Date", class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-5">
+                <label>Departure Time</label>
+                <%= form.time_field :departure_time,placeholder:"Departure Time", class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-4">
+                <label>Type</label>
+                <%=  form.collection_select(:tourism_types_id, TourismType.all, :id, :name, prompt: true, class:"form-control label-input required" )%>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :description,style: 'text-transform: capitalize;' , class:"label-login"  %>
+                <%= form.cktext_area :description, class:"form-control" %>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit" data-hover="Request Tour" class="btn btn-red">
+                  <span class="text">Request Tour </span>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Popular Packages</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider1.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider2.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Bahamas Royal Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider3.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>We are happy to help, contact us now. </p>.</p>
+              <p><i class="flaticon-phone-call"></i> (042)-345-6789</p>
+              <p><i class="flaticon-mail"></i>info@BagPackers.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

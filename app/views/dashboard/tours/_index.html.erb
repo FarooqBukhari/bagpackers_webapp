@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 traffic">
+    <div class="dashboard-list-box">
+      <h4 class="gray">Your Tours</h4>
+      <div class="table-box">
+        <table class="basic-table">
+          <thead>
+          <tr style="text-align:center;">
+            <th>Tour Name</th>
+            <th>Bookings</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Price</th>
+            <th>Promote Tour</th>
+            <th>Feature Tour</th>
+            <th>Preview</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @tours.each do |tour| %>
+          <tr id="tour-index-<%= tour.id %>" style="text-align:center;">
+            <td><%= tour.title %></td>
+            <td class="t-id"><%= tour.bookings.count %></td>
+            <td><%= tour.location.name %></td>
+            <td><%= tour.date %></td>
+            <td><%= tour.price %></td>
+            <td ><%= link_to "", edit_dashboard_tour_path(tour), class: "fa fa-tags", remote: true %></td>
+            <td ><%= link_to "", new_dashboard_tour_featured_tour_path(tour), class: "fas fa-ad", remote: true %></td>
+            <td ><a href="<%= tour_path(tour) %>"> <i class="fa fa-street-view"> </i> </a></td>
+            <td ><%= link_to "", dashboard_tour_tour_details_path(tour_id: tour.id), class: "fa fa-edit" %></td>
+            <td ><%= link_to "", dashboard_tour_path(tour), class: "fa fa-times", method: :delete, remote: true %></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 traffic" id="tour_details_box">
+
+  </div>
+</div>

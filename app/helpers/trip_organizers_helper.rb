@@ -1,0 +1,2 @@
+module TripOrganizersHelper
+end

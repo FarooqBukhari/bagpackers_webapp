@@ -1,0 +1,35 @@
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <a href="<%= hotel_manager_path(hotel_manager) %>">
+    <input type='text' class="form-control" value="<%= hotel_manager.company_name %>" readonly/>
+    </a>
+    <i class="flaticon-family"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= hotel.email %>" readonly/>
+    <i class="flaticon-mail"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= hotel.number %>" readonly/>
+    <i class="flaticon-family"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= hotel.location.name %>" readonly/>
+    <i class="flaticon-maps-and-flags"></i>
+  </div>
+</div>
+
+<% if !(hotel.website_url.empty?) %>
+  <div class="search">
+    <a href="<%= hotel.website_url %>" class="btn-red btn-red">VISIT US</a>
+  </div>
+<% end %>

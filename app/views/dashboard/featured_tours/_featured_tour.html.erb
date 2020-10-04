@@ -1,0 +1,18 @@
+<div class="feature-tour">
+  <%= form_for([:dashboard,featured_tour.tour,featured_tour]) do |form| %>
+    <div class=flag-wrapper"">
+      <h3>Your Tour will be featured on our website. Charges 500pkr per week.</h3>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label class="label-login">Number of weeks</label>
+        <%=  form.number_field :duration ,placeholder:"Number only", style: 'text-transform: capitalize; ', class:"form-control" %>
+      </div>
+      <div class="col-xs-12">
+        <div class="comment-btn">
+          <%= form.submit "Feature Tour", class: "btn-blue btn-red" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

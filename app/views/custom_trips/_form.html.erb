@@ -1,0 +1,47 @@
+<%= form_with(model: custom_trip, local: true) do |form| %>
+  <% if custom_trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(custom_trip.errors.count, "error") %> prohibited this custom_trip from being saved:</h2>
+
+      <ul>
+        <% custom_trip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field ">
+    <%= form.label :seats  %>
+    <%= form.number_field :seats ,class:"form-control",min:"0", type:"number", required:"true",onkeypress:"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :childs %>
+    <%= form.number_field :childs ,class:"form-control",min:"0", type:"number", required:"true", onkeypress:"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :rooms %>
+    <%= form.number_field :rooms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_city %>
+    <%= form.text_field :departure_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_date %>
+    <%= form.date_select :departure_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_days %>
+    <%= form.number_field :number_of_days %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

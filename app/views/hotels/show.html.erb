@@ -1,0 +1,373 @@
+<!-- Banner -->
+<section id="home_banner">
+  <!-- Paradise Slider -->
+  <div id="kenburns_061" class="carousel slide ps_indicators_txt_icon ps_control_txt_icon kbrns_zoomInOut thumb_scroll_x swipe_x ps_easeOutQuart" data-ride="carousel" data-pause="hover" data-interval="10000" data-duration="2000">
+    <!-- Wrapper For Slides -->
+    <%= render 'gallery', hotel: @hotel %>
+
+  <!-- Search Box -->
+  <div class="search-box clearfix">
+    <div class="search-outer">
+      <h3 class="text-center">Contact Information</h3>
+      <div class="search-content table_item">
+        <form>
+          <%= render 'contactinfo', hotel_manager: @hotel_manager, hotel: @hotel %>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Search Box Ends -->
+  </div>
+</section>
+<!-- Banner Ends -->
+
+<section id="mt_about">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12">
+        <div class="about_services text-center">
+          <h2 class="text-uppercase">About <span>US!</span></h2>
+          <p><%= @hotel.info.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trusted Partners -->
+<section class="trusted-partners">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-xs-4">
+        <div class="partners-title">
+          <h3>Our <span>Facilities</span></h3>
+        </div>
+      </div>
+      <div class="col-md-9 col-xs-8">
+        <ul class="partners-logo partners-slider">
+          <% if @hotel.hotel_facility["wifi"] %>
+          <li> <img src="<%= image_path '001-internet.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Wifi </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["pool"] %>
+          <li> <img src="<%= image_path '002-pool.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Pool </label></li>
+            <%end %>
+            <% if @hotel.hotel_facility["playground"] %>
+          <li> <img src="<%= image_path '003-playground.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Playground </label></li>
+          <%end %>
+              <% if @hotel.hotel_facility["parking"] %>
+          <li> <img src="<%= image_path '004-car-parking.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Parking </label></li>
+          <%end %>
+                <% if @hotel.hotel_facility["mess"] %>
+          <li> <img src="<%= image_path '005-food.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Mess </label></li>
+          <%end %>
+                  <% if @hotel.hotel_facility["shop"] %>
+          <li> <img src="<%= image_path '006-buy.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Market </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["gym"] %>
+            <li> <img src="<%= image_path '007-gym.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Gym </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["laundary"] %>
+            <li> <img src="<%= image_path '008-laundary.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Laundary </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["room_service"] %>
+            <li> <img src="<%= image_path '009-hotel.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Room Service </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["hot_water"] %>
+            <li> <img src="<%= image_path '010-hot-water.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Hot Water </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["camera"] %>
+            <li> <img src="<%= image_path '011-cctv.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">CCTV </label></li>
+          <%end %>
+          <% if @hotel.hotel_facility["ups"] %>
+            <li> <img src="<%= image_path '012-generator.png' %>" alt="kenburns_061_01"/><label style="color: #BCAC2D">Power Backup </label></li>
+          <%end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Trusted Partners Ends -->
+
+<!-- Popular Packages -->
+<% if !(@hotel_rooms.empty?) %>
+  <section class="popular-packages">
+    <div class="container">
+      <div class="section-title">
+        <h2>Hotel <span>Rooms</span></h2>
+      </div>
+      <div class="row room-slider slider-button">
+        <%= render @hotel_rooms %>
+      </div>
+    </div>
+  </section>
+<% end %>
+<!-- Popular Packages Ends -->
+
+<!-- Popular Packages -->
+<!--<section class="services">-->
+<!--  <div class="container">-->
+<!--    <div class="sml-services mar-top-20">-->
+<!--      <div class="row">-->
+<!--        <div class="col-sm-4">-->
+<!--          <div class="package-item">-->
+<!--            <img src="<%#= asset_path 'services4.jpg' %>" alt="Image">-->
+<!--            <div class="package-position">-->
+<!--              <h3 class="mar-0">Spa</h3>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-sm-4">-->
+<!--          <div class="package-item">-->
+<!--            <img src="<%#= asset_path 'services3.jpg' %>" alt="Image">-->
+<!--            <div class="package-position">-->
+<!--              <h3 class="mar-0">Restaurant</h3>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-sm-4">-->
+<!--          <div class="package-item">-->
+<!--            <img src="<%#= asset_path 'services5.jpg' %>" alt="Image">-->
+<!--            <div class="package-position">-->
+<!--              <h3 class="mar-0">Activities</h3>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!-- Popular Packages Ends -->
+
+
+<!-- Trip Ad -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-content text-center">
+      <div class="cta-title">
+        <h2 class="white text-uppercase">Relax And Enjoy Your Holiday @<%= @hotel.name %></h2>
+      </div>
+      <div class="cta-btn">
+        <a href="#home_banner" class="btn-red btn-red">CONTACT US NOW</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Trip Ad Ends -->
+
+<!-- Deals On Sale -->
+<section class="deals-on-sale">
+  <div class="container">
+    <div class="section-title">
+      <h2>Awesome Places</h2>
+      <p>THE BEST VALUE UNDER THE SUN</p>
+    </div>
+    <div class="row sale-slider slider-button">
+      <% if @hotel.location.sub_locations.exists?  %>
+        <% @hotel.location.sub_locations.each do |location| %>
+          <%= render 'locations/sub_location', location: location, col: "4" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- Deals On Sale Ends -->
+
+
+<!-- Testimonials -->
+<% if @hotel_reviews.any? %>
+<section class="testimonials">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="testimonial-inner">
+          <div class="testimonial-title text-center mar-bottom-35">
+            <h3>CUSTOMER <span>REVIEWS</span></h3>
+            <p>See what other users have to say about <%= @hotel.name %></p>
+          </div>
+          <!-- Paradise Slider -->
+          <div id="testimonial_095" class="carousel slide testimonial_095_indicators testimonial_095_control_button thumb_scroll_x swipe_x ps_easeOutSine" data-ride="carousel">
+            <!-- Wrapper For Slides -->
+            <div class="carousel-inner" role="listbox">
+              <%= render 'reviews' , reviews:@hotel_reviews %>
+            </div> <!-- End of Wrapper For Slides -->
+
+            <!-- Left Control -->
+            <a class="left carousel-control" href="#testimonial_095" role="button" data-slide="prev">
+              <span class="fa fa-chevron-left"></span>
+            </a>
+
+            <!-- Right Control -->
+            <a class="right carousel-control" href="#testimonial_095" role="button" data-slide="next">
+              <span class="fa fa-chevron-right"></span>
+            </a>
+
+          </div> <!-- End Paradise Slider -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <% end %>
+<!-- Testimonials Ends -->
+
+<!-- Countdown -->
+<section class="countdown-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="countdown-title">
+          <h3 class="white">Hot offer</h3>
+          <h2 class="white">GET <span>40% DISCOUNT</span> ONLY IN SUMMER VOCATIONS</h2>
+          <a href="#" class="btn-red mar-top-15">Book Now</a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="countdown countdown-container">
+          <h3 class="white">Limited offer</h3>
+          <p id="demo"></p>
+        </div><!-- /.countdown-wrapper -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Countdown Ends -->
+
+<!-- Blog -->
+<section class="blog">
+  <div class="container">
+    <div class="section-title">
+      <h2>Latest <span>News</span></h2>
+    </div>
+    <div class="row">
+      <% if @hotel.location.blogs.exists? %>
+        <%= render "welcome/blog", blogs:  @hotel.location.blogs, col:"4" %>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- Blog Ends -->
+
+
+<!--<div class="wrapper-content">-->
+<!--  <div id="wrapper-content"> MAIN CONTENT-->
+<!--    <div class="main-content">-->
+<!--      <section class="page-banner hotel-view" style="background-image: url(<%#= rails_blob_url(@hotel.hotel_cover_photo) %>)">-->
+<!--      </section>-->
+<!--      <section>-->
+<!--        <div class="container">-->
+<!--          <div class="page-title-wrapper">-->
+<!--            <div class="page-title-content">-->
+<!--              <p class="captions"><%#= @hotel.name %></p>-->
+
+<!--              <div class="price"><span class="number"><%#= @hotel.rate %></span><sup class="unit"> Pkr</sup></div>-->
+              <%# if !current_user.is_hotel_manager.nil? %>
+                <%# if current_user.id == @hotel.hotel_manager.user_id %>
+<!--                  <div><a class="btn btn-primary" href="<%#= edit_hotel_path(hotel_id: @hotel.id) %>">Edit Hotel</a></div>-->
+<!--                  <div><a class="btn btn-primary" href="<%#= new_hotel_hotel_room_path(hotel_id: @hotel.id) %>">Add new Room</a></div>-->
+                <%# end %>
+              <%#end %>
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="hotel-view-main padding-top padding-bottom">-->
+<!--          <div class="container">-->
+<!--            <div class="journey-block"><h3 class="title-style-2"><span> </span></h3>-->
+
+<!--              <div class="wrapper-journey">-->
+                <%# if @hotel.hotel_facility["parking"] %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-parking"></i>-->
+<!--                    <p class="text">Parking</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.wifi %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-wifi"></i>-->
+<!--                    <p class="text">Wifi</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.pool %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-swimming-pool"></i>-->
+<!--                    <p class="text">Pool</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.playground %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-toboggan"></i>-->
+<!--                    <p class="text">Playground</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.mess %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-restaurant"></i>-->
+<!--                    <p class="text">Mess</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.shop %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-shopping-cart"></i>-->
+<!--                    <p class="text">Shop</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.laundary %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-washing-machine"></i>-->
+<!--                    <p class="text">Laundary</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.gym %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-exercise"></i>-->
+<!--                    <p class="text">Gym</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.room_service %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-room-service"></i>-->
+<!--                    <p class="text">Room Service</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.hot_water %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-tap"></i>-->
+<!--                    <p class="text">Hot Water</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.camera %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-cctv"></i>-->
+<!--                    <p class="text">Camera</p>-->
+<!--                  </div>-->
+                <%# end %>
+                <%# if @hotel.hotel_facility.ups %>
+<!--                  <div class="item feature-item"><i class="icon-journey glyph-icon flaticon-power"></i>-->
+<!--                    <p class="text">Power Backup</p>-->
+<!--                  </div>-->
+                <%# end %>
+<!--              </div>-->
+<!--              <div class="overview-block clearfix"><h3 class="title-style-3">Hotel Overview</h3>-->
+<!--                <div class="container">-->
+<!--                  <p class="text"><%#= @hotel.info %></p>-->
+<!--                </div>-->
+<!--                <div class="timeline-container">-->
+<!--                  <div class="timeline timeline-hotel-view">-->
+                    <%#= render @hotel_rooms %>
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="map-block">-->
+<!--            <div class="map-info"><h3 class="title-style-2">Contact Us</h3>-->
+
+<!--              <p class="address"><i class="fa fa-map-marker"></i> 333 Moo 10, Chert Wudthakas Road, Srikan, Don Mueang, Bangkok, Thailand</p>-->
+
+<!--              <p class="phone"><i class="fa fa-phone"></i> 910-740-6026</p>-->
+
+<!--              <p class="mail"><a href="mailto:domain@expooler.com"> <i class="fa fa-envelope-o"></i>domain@expooler.com</a></p>-->
+
+<!--              <div class="footer-block"><a class="btn btn-open-map">Open Map</a></div>-->
+<!--            </div>-->
+<!--            <div id="googleMap"></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--    </div>-->
+<!--     BUTTON BACK TO TOP-->
+<!--    <div id="back-top"><a href="#top" class="link"><i class="fa fa-angle-double-up"></i></a></div>-->
+<!--  </div>-->
+<!--</div>-->

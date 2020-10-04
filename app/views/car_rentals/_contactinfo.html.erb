@@ -1,0 +1,35 @@
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <a href="<%= car_rental_owner_path(car_rental_owner) %>">
+    <input type='text' class="form-control" value="<%= car_rental_owner.company_name %>" readonly/>
+    </a>
+    <i class="flaticon-family"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= car_rental.email %>" readonly/>
+    <i class="flaticon-mail"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= car_rental.number %>" readonly/>
+    <i class="flaticon-family"></i>
+  </div>
+</div>
+
+<div class="form-group form-icon">
+  <div class='input-group'>
+    <input type='text' class="form-control" value="<%= car_rental.location.name %>" readonly/>
+    <i class="flaticon-maps-and-flags"></i>
+  </div>
+</div>
+
+<% if !(car_rental.website_url.empty?) %>
+  <div class="search">
+    <a href="<%= car_rental.website_url %>" class="btn-red btn-red">VISIT US</a>
+  </div>
+<% end %>

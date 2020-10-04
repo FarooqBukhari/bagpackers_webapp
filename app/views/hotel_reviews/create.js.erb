@@ -1,0 +1,6 @@
+$('#review_box').prepend('<%= render "hotel_reviews/hotel_review", review: @hotel_review %>');
+document.getElementById("hotel-review-<%= @hotel_review.id %>").scrollIntoView();
+$('#hotel_review_review_text')[0].value = "";
+$('#hotel_review_rating')[0].value = "";
+$('#stars > li').removeClass("selected");
+$('.comments-form').remove();

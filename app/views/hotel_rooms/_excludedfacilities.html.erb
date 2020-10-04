@@ -1,0 +1,5 @@
+<% @hotel_room_facilities_name.each do |facility| %>
+  <% if @hotel_room[@keys[(facility.id)+2]] == false %>
+    <li><i class="fa fa-times" aria-hidden="true"></i><%= facility.name %></li>
+  <% end %>
+<% end %>

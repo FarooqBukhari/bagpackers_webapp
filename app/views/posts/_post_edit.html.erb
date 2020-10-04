@@ -1,0 +1,32 @@
+<% user = User.find @post.user_id %>
+<div class="post-content" id="post-<%= @post.id %>">
+  <%= form_for(@post, :html => {:multipart => true} ) do |f| %>
+    <% if @post.attachment.attached? %>
+      <img src="<%= url_for @post.attachment %>" alt="post-image" class="img-responsive post-image" id="post-image-<%= @post.id %>" />
+      <%= link_to 'X', post_delete_image_attachment_path(post_id: @post.id,id: @post.attachment.id), method: :post, id:"post-delete-button", remote:true, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <div class="post-container">
+      <% if user.profile_picture.attached? %>
+        <%= image_tag url_for(user.profile_picture), class:"profile-photo-md pull-left" %>
+      <% else %>
+        <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+      <% end %>
+
+      <div class="post-detail">
+        <div class="user-info">
+          <h5><a href="<%= user_path user %>" class="profile-link"> <%= user.name %> </a></h5>
+          <p class="text-muted"> <%= time_ago_in_words @post.created_at %> </p>
+        </div>
+        <div class="reaction">
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-text">
+          <p> <%= f.text_field :content %> <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+        </div>
+        <div class="line-divider"></div>
+      </div>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+

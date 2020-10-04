@@ -1,0 +1,72 @@
+<%= form_tag featured_create_path(@featured_tour.id) do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+  </article>
+  <div class="container">
+    <h3 style="text-align: center"> Checkout </h3>
+    <hr>
+    <table id="cart" class="table table-hover table-condensed">
+      <thead>
+      <tr>
+        <th style="width:50%"> <%= @featured_tour.featured_type %> </th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Duration</th>
+        <th style="width:22%" class="text-center">Subtotal</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td data-th="Product">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+            <div class="col-sm-10">
+              <% if @featured_tour.featured_type == "Tour" %>
+              <h4 class="nomargin"> <%= @featured_tour.tour.title  %> </h4>
+              <% else %>
+                <h4 class="nomargin"> <%= @featured_tour.hotel.name  %> </h4>
+              <% end %>
+              <div>
+                <p>Name : <%= @featured_tour.user.name  %></p>
+                <p>Email : <%= @featured_tour.user.email  %></p>
+                <p>Phone : <%= @featured_tour.user.phone_number  %></p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td data-th="Price">500</td>
+        <td data-th="Quantity">
+          <%= @featured_tour.duration %>
+        </td>
+        <td data-th="Subtotal" class="text-center"><%= @featured_tour.payment_amount %> RS</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr class="visible-xs">
+        <td class="text-center"><strong>Total 1.99</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <%= link_to 'Delete', dashboard_tour_featured_tour_path(@featured_tour.id), class:"btn btn-danger", method: :delete %>
+        </td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td class="hidden-xs text-center"><strong><%= @featured_tour.payment_amount %> RS</strong></td>
+        <td>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Pay for featuring your trip"
+                  data-amount="<%= @featured_tour.payment_amount * 100 %>"
+                  data-email="<%= current_user.email %>"
+                  data-currency="pkr"
+                  data-locale="auto">
+          </script>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+
+<% end %>

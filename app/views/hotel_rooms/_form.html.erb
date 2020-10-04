@@ -1,0 +1,218 @@
+<%= form_with(model: [@hotel,@hotel_room], local: true) do |form| %>
+<!--  <div class="wrapper-content">-->
+<!--    < HEADER-->
+<!--    <header></header>-->
+<!--    < WRAPPER-->
+<!--    <div id="wrapper-content">-->
+<!--      <! MAIN CONTENT-->-->
+<!--      <div class="main-content">-->
+<!--        <section class="page-login">-->
+<!--          <div class="container wrapper-login">-->
+<!--            <div class="content-login">-->
+<!--              <div class="main-login">-->
+<!--                <div class="logo-login">-->
+<!--                  <a href="index.html" class="logo-black">-->
+<!--                    <img src="assets/images/logo/logo-black-color-1.png" alt="" class="img img-reponsive">-->
+<!--                  </a>-->
+<!--                </div>-->
+                <%# if hotel_room.errors.any? %>
+<!--                  <div id="error_explanation">-->
+<!--                    <h2><%#= pluralize(hotel_room.errors.count, "error") %> prohibited this hotel_room from being saved:</h2>-->
+<!--                    <ul>-->
+                      <%# hotel_room.errors.full_messages.each do |message| %>
+<!--                        <li><%#= message %></li>-->
+                      <%# end %>
+<!--                    </ul>-->
+<!--                  </div>-->
+                <%# end %>
+<!--                <div class="login-title">Add a New Hotel Room Type !</div>-->
+<!--                <div class="login-form">-->
+<!--                  <div class="row">-->
+<!--                    <div class="content-form">-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-login">-->
+<!--                          <div class="input-login">-->
+                            <%#= form.label :room_type, class:"label-login" %>
+<!--                            <br>-->
+                            <%#= form.select :room_type, options_for_select([["Select One", "Simple"], "Single Room", "Double Room", "Triple Room", "Quad Room", "Twin Room","Luxury Room","Studio","Mini Suite","Master Suite","Hut","Cottage"], selected: @hotel_room.room_type || nil ), {},:class => 'form-control label-input' %>
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-login">-->
+<!--                          <div class="input-login">-->
+                            <%#= form.label :price, class:"label-login" %>
+                            <%#= form.number_field :price, class:"form-control label-input" %>
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-login">-->
+<!--                          <div class="input-login">-->
+                            <%#= form.label :number_of_beds, class:"label-login" %>
+                            <%#= form.number_field :number_of_beds, class:"form-control label-input" %>
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-login">-->
+<!--                          <div class="input-login">-->
+                            <%#= form.label :hotel_room_pictures, class:"label-login"  %>
+                            <%#= form.file_field :hotel_room_pictures, class:"form-control", multiple:"true" %>
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-login">-->
+<!--                          <div class="input-login">-->
+<!--                            <label for="hotel_facility_name_id">Room Facilities</label>-->
+<!--                            <br>-->
+                            <%# if @keys.empty? %>
+                              <%# @hotel_room_facilities_name.each do |facility| %>
+                                <%#= check_box_tag("facilities[]" , facility.id) %>
+                                <%#= facility.name %>
+<!--                                <br>-->
+                              <%# end %>
+                            <%# else %>
+                              <%# @hotel_room_facilities_name.each do |facility| %>
+                                <%# if @hotel_room[@keys[(facility.id)+2]] %>
+                                  <%#= check_box_tag("facilities[]" , facility.id , checked: true) %>
+                                <%# else %>
+                                  <%#= check_box_tag("facilities[]" , facility.id) %>
+                                <%# end %>
+                                <%#= facility.name %>
+<!--                                <br>-->
+                              <%# end %>
+                            <%# end %>
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="clearfix"></div>-->
+<!--                      <div class="contact-submit">-->
+<!--                        <button type="submit" data-hover="Add Now" class="btn-slide">-->
+<!--                          <span class="text">Add Hotel </span>-->
+<!--                          <span class="icons fa fa-long-arrow-right"></span>-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <%#= link_to 'Back', hotels_path %>
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </section>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<%# end %>
+  <!-- Breadcrumb -->
+  <section class="breadcrumb-outer text-center">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <h2>Add A New Hotel</h2>
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+    </div>
+    <div class="section-overlay"></div>
+  </section>
+  <!-- BreadCrumb Ends -->
+
+  <section class="booking">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="booking-form booking-outer">
+            <%= form_for([:dashboard, hotel], local: true, class: "custom-form", remote: true, authenticity_token: true) do |form| %>
+              <div id="error_explanation">
+                <% if hotel.errors.any? %>
+                  <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+                  <ul>
+                    <% hotel.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6">
+                  <%= form.label :name, style: 'text-transform: capitalize',class:"label-login" %>
+                  <%= form.text_field :name,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <%= form.label :number, style: 'text-transform: capitalize; ',class:"label-login" %>
+                  <%= form.number_field :number,placeholder:"Hotel Contact Number", style: 'text-transform: capitalize; ', class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6 ">
+                  <%= form.label :email, style: 'text-transform: capitalize; ',class:"label-login" %>
+                  <%= form.email_field :email,placeholder:"Hotel Email", class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <%= form.label :address, style: 'text-transform: capitalize; ',class:"label-login" %>
+                  <%= form.text_field :address,placeholder:"Hotel Address", style: 'text-transform: capitalize;', class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <%= form.label :website_url, style: 'text-transform: capitalize; ',class:"label-login" %>
+                  <%= form.text_field :website_url,placeholder:"Website URL (Optional)", class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Location</label>
+                  <%=  form.collection_select(:locations_id, Location.all, :id, :name, prompt: true, class:"form-control required", required:"true" )%>
+                </div>
+                <div class="textarea col-xs-12">
+                  <%= form.label :info,style: 'text-transform: capitalize;' , class:"label-login"  %>
+                  <%= form.cktext_area :info, class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <%= form.label :proof_of_ownership,  style: 'text-transform: capitalize;',class:"label-login"  %>
+                  <%= form.file_field :proof_of_ownership, class:"form-control" %>
+                </div>
+                <div class="form-group col-xs-6">
+                  <%= form.label :hotel_cover_photos,style: 'text-transform: capitalize;', class:"label-login"  %>
+                  <%= form.file_field :hotel_cover_photos, class:"form-control", multiple:"true" %>
+                </div>
+
+                <label class="label-login">Hotel Facilities</label>
+                <div class="form-control col-xs-12">
+                  <ul class="checkbox-grid">
+                    <% if @keys.nil? || @keys.empty? %>
+                      <% @hotel_facilities_name.each do |facility| %>
+                        <li>
+                          <label class="checkbox-inline">
+                            <%= check_box_tag("facilities[]" , facility.id) %>
+                            <%= facility.name %>
+                          </label>
+                        </li>
+                      <% end %>
+                    <% else %>
+                      <% @hotel_facilities_name.each do |facility| %>
+                        <li>
+                          <label class="checkbox-inline">
+                            <% if @hotel_facilities[@keys[(facility.id)+1]] %>
+                              <%= check_box_tag("facilities[]" , facility.id , checked: true) %>
+                            <% else %>
+                              <%= check_box_tag("facilities[]" , facility.id) %>
+                            <% end %>
+                            <%= facility.name %>
+                          </label>
+                        </li>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                </div>
+
+                <div class="col-xs-12">
+                  <div class="comment-btn">
+                    <%= form.submit "Add Hotel", class: "btn-blue btn-red" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<% end %>

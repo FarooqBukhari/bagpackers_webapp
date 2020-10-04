@@ -1,0 +1,38 @@
+@import "../theme_files/bootstrap.min.css";
+@import "../theme_files/style.css.scss";
+@import "flaticon.css";
+@import "../theme_files/plugin.css";
+
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+    border: #1e1e25;
+    /*border: 2px solid #1e1e25  !important;*/
+}
+
+#profile-container {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    horiz-align: center;
+    overflow: hidden;
+    border: 1px solid #1e1e25  !important;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#profile-container img {
+    width: 150px;
+    height: 150px;
+    /*border: 2px solid #1e1e25 !important;*/
+    text-align: center;
+    horiz-align: center;
+}

@@ -1,0 +1,33 @@
+/*!*@import "theme_files/bootstrap.min.css";*!*/
+/*!*@import "theme_files/style.css.scss";*!*/
+/*!*@import "flaticon.css";*!*/
+/*!*@import "theme_files/plugin.css";*!*/
+/*@import "theme_files/bootstrap.min.css";*/
+/*@import "theme_files/hotel.css.erb";*/
+/*@import "flaticon.css";*/
+/*@import "theme_files/plugin.css";*/
+
+
+/*!*!**!*/
+/*!*Personal CSS*!*/
+/*!* *!*!*/
+/*!*.hotel-room-thumbnail{*!*/
+/*!*    width: 100%;*!*/
+/*!*    height: 250px;*!*/
+/*!*}*!*/
+/*!*.hotel-thumbnail{*!*/
+/*!*    width: 100%;*!*/
+/*!*    height: 200px;*!*/
+/*!*}*!*/
+/*!*.hotel-cover-photo-thumbnail{*!*/
+/*!*    height: 100%;*!*/
+/*!*}*!*/
+/*!*.checkbox-grid li {*!*/
+/*!*    display: block;*!*/
+/*!*    float: left;*!*/
+/*!*    width: 25%;*!*/
+@import "theme_files/bootstrap.min.css";
+@import "theme_files/style.css.scss";
+@import "theme_files/hotel.css.erb";
+@import "flaticon.css";
+@import "theme_files/plugin.css";

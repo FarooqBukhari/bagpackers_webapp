@@ -1,0 +1,23 @@
+<div class="feature-tour">
+  <%= form_for([:dashboard,featured_tour.tour,featured_tour], local: true, remote: true) do |form| %>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label class="label-login">Do you want to provide a discount on your tour?</label>
+        <% if tour.promoted %>
+          <%= check_box_tag("promoted" ,true,checked: true) %> (If No then uncheck the box.)
+        <% else %>
+          <%= check_box_tag("promoted",true) %> (If Yes then check the box.)
+        <% end %>
+      </div>
+      <div class="form-group col-xs-6">
+        <%= form.label :promotion_price, style: 'text-transform: capitalize; ',class:"label-login" %>
+        <%= form.number_field :promotion_price,placeholder:"Discounted Price", style: 'text-transform: capitalize; ', class:"form-control" %>
+      </div>
+      <div class="col-xs-12">
+        <div class="comment-btn">
+          <%= form.submit "Promote Tour", class: "btn-blue btn-red" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="share-box-inner">
+    <!-- profile picture end -->
+    <div class="profile-thumb">
+      <figure class="profile-thumb-middle">
+        <% if current_user.profile_picture.attached? %>
+        <img src="<%= rails_blob_url(current_user.profile_picture) %>" alt="profile picture">
+          <% else %>
+          <img src="<%= image_path 'user_default' %>" alt="profile picture">
+        <% end %>
+      </figure>
+    </div>
+    <!-- profile picture end -->
+
+    <!-- share content box start -->
+    <div class="share-content-box w-100">
+      <div id="mentionable-data" data-content="<%= mentionable_user_path(current_user) %>"></div>
+      <%= form_tag comments_path(commentable_type: commentable.class.to_s, commentable_id: commentable.id),class:'share-text-box' ,id: 'new_comment', method: :post, remote: true do %>
+        <div id="comment-text" contenteditable="true" class="share-text-field editable form-control input-mentionable" placeholder="Enter Comment"></div>
+        <%= hidden_field_tag :comment_text, nil, placeholder: 'Enter Comment', class: 'form-control input-mentionable' %>
+        <%= submit_tag :comment, class: 'edit-btn pull-right' %>
+      <% end %>
+    </div>
+  </div>
+</div>

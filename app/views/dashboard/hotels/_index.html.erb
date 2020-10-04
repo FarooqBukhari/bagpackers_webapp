@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 traffic">
+    <div class="dashboard-list-box">
+      <h4 class="gray">Your Hotels</h4>
+      <div class="table-box">
+        <table class="basic-table">
+          <thead>
+          <tr>
+            <th>Hotel Name</th>
+            <th>Reviews</th>
+            <th>Destination</th>
+            <th>Address</th>
+            <th>Room Count</th>
+            <th>Preview</th>
+            <th>Feature Hotel</th>
+            <th>Edit Hotel</th>
+            <th>Add Room</th>
+            <th>Edit Rooms</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @hotels.each do |hotel| %>
+          <tr id="hotel-index-<%= hotel.id %>">
+            <td><%= hotel.name %></td>
+            <td class="t-id"><%= hotel.hotel_reviews.count %></td>
+            <td><%= hotel.location.name %></td>
+            <td><%= hotel.address %></td>
+            <td><%= hotel.hotel_rooms.count %></td>
+            <td> <a href="<%= hotel_path(hotel) %>"> <i class="fa fa-street-view"> </i> </a>  </td>
+            <td ><%= link_to "", new_dashboard_hotel_featured_hotel_path(hotel_id: hotel.id), class: "fas fa-ad", remote: true %></td>
+            <td><%= link_to "", edit_dashboard_hotel_path(hotel.id), class: "fa fa-edit", remote: true %></td>
+            <td><%= link_to "", new_dashboard_hotel_hotel_room_path(hotel_id: hotel.id), class: "fa fa-plus", remote: true %></td>
+            <td><%= link_to "", dashboard_hotel_hotel_rooms_path(hotel_id: hotel.id), class: "fa fa-edit", remote: true %></td>
+            <td><%= link_to "", dashboard_hotel_path(hotel), class: "fa fa-times", method: :delete, remote: true %></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 traffic" id="tour_details_box">
+
+  </div>
+</div>

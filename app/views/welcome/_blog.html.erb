@@ -1,0 +1,28 @@
+<% blogs.each do |blog| %>
+  <div class="col-sm-<%= col %> col-xs-12">
+    <div class="blog-item">
+      <div class="blog-image">
+        <img src="<%= url_for blog.image %>" alt="Image">
+      </div>
+      <div class="blog-content">
+        <div class="blog-date"><p><i class="fa fa-clock-o"></i> Posted On : <%= blog.created_at.strftime("%B %d, %Y") %> </p></div>
+        <h3><a href="<%= blog_path(blog) %>"> <%= blog.title %> </a></h3>
+        <p>
+          <%= truncate( (blog.description.html_safe), length: 200, escape: false) %>
+        </p>
+        <div class="blog-author">
+          <div class="pull-left">
+            <p><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> Bagpackers</a></p>
+          </div>
+          <div class="pull-right blog-date-icon">
+            <% if blog.locations_id? %>
+              <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= blog.location.name %> </p>
+            <% end %>
+            <!--                        <p><i class="fa fa-heart" aria-hidden="true"></i> 5</p>-->
+            <!--                        <p><i class="fa fa-comment-o" aria-hidden="true"></i> 0</p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="sidebar-package">
+  <div class="sidebar-package-image">
+    <img src="<%= url_for tour.image %>" alt="Images">
+  </div>
+  <div class="destination-content sidebar-package-content">
+    <h4><a href=""> <%= tour.title %> </a></h4>
+    <div class="deal-rating">
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star-o"></span>
+      <span class="fa fa-star-o"></span>
+    </div>
+    <p><i class="flaticon-time"></i> <%= tour.duration %> days starts from <span class="bold">RS <%= tour.price %></span> </p>
+    <a href="<%= tour_path tour %>" class="btn-blue btn-red">View Now</a>
+  </div>
+</div>

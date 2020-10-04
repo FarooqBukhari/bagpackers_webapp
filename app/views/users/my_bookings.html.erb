@@ -1,0 +1,46 @@
+<main>
+  <div class="main-wrapper">
+    <%= render 'profile_view' %>
+    <div class="row" style="margin: 0px;">
+      <!-- sendary menu start -->
+      <div class="col-md-9">
+        <div class="menu-secondary">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="secondary-menu-wrapper secondary-menu-2 bg-white">
+                  <div class="page-title-inner">
+                    <h4 class="page-title">my Bookings (<%= @bookings.count %>)</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- sendary menu end -->
+
+        <!-- photo section start -->
+        <div class="friends-section mt-20" id="user-<%= @user.id %>">
+          <div id="tours_div">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="content-box friends-zone">
+                    <div class="row mt--20 friends-list">
+                      <%= render @bookings %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= js_will_paginate @bookings %>
+        </div>
+      </div>
+      <!-- photo section end -->
+      <div class="col-md-3">
+        <%= render 'shared/links', user:current_user %>
+      </div>
+    </div>
+  </div>
+</main>

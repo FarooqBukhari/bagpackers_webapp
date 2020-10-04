@@ -1,0 +1,136 @@
+<!-- Banner -->
+<section id="home_banner">
+  <!-- Paradise Slider -->
+  <div id="kenburns_061" class="carousel slide ps_indicators_txt_icon ps_control_txt_icon kbrns_zoomInOut thumb_scroll_x swipe_x ps_easeOutQuart" data-ride="carousel" data-pause="hover" data-interval="10000" data-duration="2000">
+    <!-- Wrapper For Slides -->
+    <%= render 'gallery', car_rental: @car_rental %>
+
+    <!-- Search Box -->
+    <div class="search-box clearfix">
+      <div class="search-outer">
+        <h3 class="text-center">Contact Information</h3>
+        <div class="search-content table_item">
+          <form>
+            <%= render 'contactinfo', car_rental_owner: @car_rental_owner, car_rental: @car_rental %>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Search Box Ends -->
+  </div>
+</section>
+<!-- Banner Ends -->
+
+<section id="mt_about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="about_services text-center">
+          <h2 class="text-uppercase">About <span>US!</span></h2>
+          <p><%= @car_rental.info.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Packages -->
+<% if !(@vehicles.empty?) %>
+  <section class="popular-packages">
+    <div class="container">
+      <div class="section-title">
+        <h2>Available <span>Vehicles</span></h2>
+      </div>
+      <div class="row room-slider slider-button">
+        <%= render @vehicles %>
+      </div>
+    </div>
+  </section>
+<% end %>
+<!-- Popular Packages Ends -->
+
+<!-- Popular Packages -->
+<section class="services">
+  <div class="container">
+    <div class="sml-services mar-top-20">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="package-item">
+            <img src="<%= asset_path 'services4.jpg' %>" alt="Image">
+            <div class="package-position">
+              <h3 class="mar-0">Spa</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="package-item">
+            <img src="<%= asset_path 'services3.jpg' %>" alt="Image">
+            <div class="package-position">
+              <h3 class="mar-0">Restaurant</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="package-item">
+            <img src="<%= asset_path 'services5.jpg' %>" alt="Image">
+            <div class="package-position">
+              <h3 class="mar-0">Activities</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Popular Packages Ends -->
+
+
+<!-- Trip Ad -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-content text-center">
+      <div class="cta-title">
+        <h2 class="white text-uppercase">Relax And Enjoy Your Holiday @<%= @car_rental.name %></h2>
+      </div>
+      <div class="cta-btn">
+        <a href="#home_banner" class="btn-red btn-red">CONTACT US NOW</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Trip Ad Ends -->
+
+<!-- Deals On Sale -->
+<section class="deals-on-sale">
+  <div class="container">
+    <div class="section-title">
+      <h2>Awesome Places</h2>
+      <p>THE BEST VALUE UNDER THE SUN</p>
+    </div>
+    <div class="row sale-slider slider-button">
+      <% if @car_rental.location.sub_locations.exists?  %>
+        <% @car_rental.location.sub_locations.each do |location| %>
+          <%= render 'locations/sub_location', location: location, col: "4" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- Deals On Sale Ends -->
+
+<!-- Blog -->
+<section class="blog">
+  <div class="container">
+    <div class="section-title">
+      <h2>Latest <span>News</span></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt .</p>
+    </div>
+    <div class="row">
+      <% if @car_rental.location.blogs.exists? %>
+        <%= render "welcome/blog", blogs:  @car_rental.location.blogs, col:"4" %>
+      <% end %>
+    </div>
+  </div>
+</section>

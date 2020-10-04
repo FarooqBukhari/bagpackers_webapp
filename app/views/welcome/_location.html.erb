@@ -1,0 +1,11 @@
+<% locations.each do |location| %>
+<div class="col-md-4 col-xs-4">
+  <div class="top-destination-item"style="width: 100%; height: 300px;">
+    <img class="img-responsive" src="<%= (url_for location.images[0])%>"  style="height: 100%;"alt="Image">
+    <div class="overlay">
+      <h2><a href="<%= location_path(location) %>"><%= location.name %></a></h2>
+      <p>Plan Your Tour to <%= location.name %> With Us.</p>
+    </div>
+  </div>
+</div>
+<%end %>

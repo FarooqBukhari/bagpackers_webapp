@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Seats:</strong>
+  <%= @custom_trip.seats %>
+</p>
+
+<p>
+  <strong>Childs:</strong>
+  <%= @custom_trip.childs %>
+</p>
+
+<p>
+  <strong>Rooms:</strong>
+  <%= @custom_trip.rooms %>
+</p>
+
+<p>
+  <strong>Departure city:</strong>
+  <%= @custom_trip.departure_city %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @custom_trip.departure_date %>
+</p>
+
+<p>
+  <strong>Number of days:</strong>
+  <%= @custom_trip.number_of_days %>
+</p>
+
+<%= link_to 'Edit', edit_custom_trip_path(@custom_trip) %> |
+<%= link_to 'Back', custom_trips_path %>

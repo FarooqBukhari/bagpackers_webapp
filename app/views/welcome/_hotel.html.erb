@@ -1,0 +1,24 @@
+<% hotels.each do |hotel| %>
+<div class="col-md-12">
+  <div class="sale-item">
+    <div class="sale-image"style="width: 100%; height: 450px;">
+      <img src="<%= url_for(hotel.hotel_cover_photos[0]) %>"  style="height: 100%;" alt="Image">
+    </div>
+    <div class="sale-content">
+      <div class="sale-review">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+      </div>
+      <h3><a href="<%= hotel_path(hotel)%>"><%= hotel.name %></a></h3>
+      <p><i class="flaticon-phone-call"></i> <%= hotel.number %></p>
+      <p><i class="flaticon-mail"></i> <%= hotel.email %></p>
+
+      <a href="<%= hotel_path(hotel)%>" class="btn-blue btn-red">View More</a>
+    </div>
+    <div class="sale-overlay"></div>
+  </div>
+</div>
+<%end %>

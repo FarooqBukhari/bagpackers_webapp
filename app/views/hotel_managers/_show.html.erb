@@ -1,0 +1,188 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Hotel Manager Details</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%=root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%=hotels_path%>">Hotel</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Hotel Manager</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="main-content detail">
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @hotel_manager.company_name%></h2>
+              <p class="detail-info-price">Hotels owned: <span class="bold"><%= @hotel_manager.hotels.count  %></span></p>
+              <div class="deal-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+              </div>
+              <!--              <div class="col-lg-3 col-sm-6">-->
+              <!--                <div class="circle-tile ">-->
+              <!--                  <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-star fa-fw fa-3x"></i></div></a>-->
+              <!--                  <div class="circle-tile-content dark-blue">-->
+              <!--                    <div class="circle-tile-description text-faded"> Rating</div>-->
+              <!--                    <div class="circle-tile-number text-faded "> <%#= @hotel_manager.tour_reviews.average(:rating) %> / 5 </div>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+              <!--              </div>-->
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <!-- 1st Indicator -->
+                <li data-target="#in_th_030" data-slide-to="0" class="active">
+                  <!-- 1st Indicator Image -->
+                  <img src="<%= url_for @hotel_manager.company_logo %>"/>
+                </li>
+
+              </ol> <!-- /Indicators -->
+              <!-- Wrapper For Slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First Slide -->
+                <div class="item active">
+                  <!-- Slide Background -->
+                  <img src="<%= url_for @hotel_manager.company_logo %>"/>
+                </div>
+                <!-- End of Slide -->
+              </div> <!-- End of Wrapper For Slides -->
+            </div> <!-- End Paradise Slider -->
+          </div>
+<!--          <div class="description detail-box">-->
+<!--            <div class="detail-title">-->
+<!--              <h3>About </h3>-->
+<!--            </div>-->
+<!--            <div class="description-content">-->
+<!--              <p> <%#= @hotel_manager.about %> </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="description detail-box">-->
+<!--            <div class="detail-title">-->
+<!--              <h3>Terms & Conditions </h3>-->
+<!--            </div>-->
+<!--            <div class="description-content">-->
+<!--              <p> <%#= @hotel_manager.terms %> </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="description detail-box">-->
+<!--            <div class="detail-title">-->
+<!--              <h3>Cancellation Policy </h3>-->
+<!--            </div>-->
+<!--            <div class="description-content">-->
+<!--              <p> <%#= @hotel_manager.cancellation_policy %> </p>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div class="top-attractions detail-box">
+            <div class="detail-title">
+              <h3>Our Hotels</h3>
+            </div>
+            <div class="top-attraction-content">
+              <% @hotel_manager.hotels.each do |hotel| %>
+                <div class="att-item clearfix">
+                  <a href="<%= hotel_path(hotel) %>">
+                    <div class="att-image">
+                      <%= image_tag url_for(hotel.hotel_cover_photos[0]), alt: 'img'%>
+                    </div>
+                    <div class="att-content">
+                      <div class="att-content-left">
+                        <h4><%= hotel.name %></h4>
+                        <ul>
+                          <li><i class="fa fa-check" aria-hidden="true"></i>Address: <%= hotel.address %></li>
+                          <li><i class="fa fa-check" aria-hidden="true"></i>Email: <%= hotel.email %></li>
+                        </ul>
+                      </div>
+                      <div class="att-content-right" style="margin-bottom: 5px!important;">
+                        <p style="text-align: center!important;margin-top: -10px!important;">No. of Rooms: <span class="bold"><%= hotel.hotel_rooms.count %></span></p>
+                        <p style="text-align: center!important;margin-top: -10px!important;">Contact: <span class="bold"><%= hotel.number %></span></p>
+
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="comments detail-box">
+            <div class="detail-title">
+              <h3>Comments</h3>
+            </div>
+            <div class="comment-content" id="review_box">
+              <% if @hotel_reviews.empty? %>
+                <div class="comment-item">
+                  No yet Rated!
+                </div>
+              <% end %>
+              <% @hotel_reviews.each do |review| %>
+                <%= render "hotel_reviews/hotel_review", review: review  %>
+              <% end %>
+              <div id="hotel_review_paginate">
+                <%= paginate @hotel_reviews %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item sidebar-item-dark">
+            <div class="detail-title">
+              <h3>Basic Information</h3>
+            </div>
+            <form>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value=" Email: <%= @hotel_manager.user.email %>" readonly>
+                </div>
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value="Contact: <%= @hotel_manager.user.phone_number %>" readonly>
+                </div>
+<!--                <div class="form-group col-xs-12">-->
+<!--                  <input type="text" class="form-control" value="URL: <%#= @hotel_manager.url %>" readonly>-->
+<!--                </div>-->
+<!--                <div class="form-group col-xs-8">-->
+<!--                  <input type="email" class="form-control" value="Contact: <%#= @hotel_manager.company_number %>" readonly>-->
+<!--                </div>-->
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Popular Packages</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+            <% @hotel_managers.each do |hote_manager| %>
+              <%= render "hotel_managers/related_hotel_manager", hotel_manager: hote_manager %>
+            <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sedpr do eiusmod tempor incididunt ut.</p>
+              <p><i class="flaticon-phone-call"></i> (012)-345-6789</p>
+              <p><i class="flaticon-mail"></i> tourntravel@testmail.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Edit Profile</h2>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <% if trip_organizer.errors.any? %>
+        <ul>
+          <% trip_organizer.errors.full_messages.each do |message| %>
+            <p style="color: red"><%= message %></p>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="col-md-10">
+        <div class="booking-form booking-outer">
+          <%= form_for([:dashboard, trip_organizer], local: true) do |form| %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :company_name, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :company_name,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :company_email, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :company_email,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :company_number, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :company_number,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :address, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :address,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :about, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :about,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :terms, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :terms,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :url, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :url,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :cancellation_policy, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :cancellation_policy,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :license, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :license,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="form-group col-xs-6">
+                <%= form.label :company_logo, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :company_logo,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="comment-btn">
+                  <a href="#" class="btn-blue btn-red">Update Profile</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

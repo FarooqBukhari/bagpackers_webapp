@@ -1,0 +1,8 @@
+@import "theme_files/bootstrap.min.css";
+@import "theme_files/style.css.scss";
+@import "theme_files/hotel.css.erb";
+@import "flaticon.css";
+@import "theme_files/plugin.css";
+// Place all the styles related to the Custom_Trips controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/

@@ -1,0 +1,4 @@
+$("#tour_details_box").empty();
+<% @hotel_rooms.each do |hotel_room| %>
+  $("#tour_details_box").append("<%= escape_javascript(render "dashboard/hotel_rooms/form", hotel_room: hotel_room, hotel: @hotel, hotel_facilities: @hotel_facilities, keys: @keys  ) %>");
+<% end %>

@@ -1,0 +1,9 @@
+<li><%= link_to 'News Feed', feed_path %></li>
+<li><%= link_to "Timeline", @user, class: 'active' %></li>
+<li><%= link_to 'Followers', followers_user_path(@user) %></li>
+<li><%= link_to 'Friends', friends_user_path(@user) %></li>
+<% if current_user == user %>
+<!--  <li><%#= link_to 'Change password', edit_user_registration_path %></li>-->
+<!--  <li><%#= link_to 'Deactivate', deactivate_user_path(@user) %></li>-->
+  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "main-menu" %> </li>
+<% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  price: 
+  date: 2019-10-04
+  duration: 
+  seats: 
+  comapnay: MyString
+
+two:
+  title: MyString
+  price: 
+  date: 2019-10-04
+  duration: 
+  seats: 
+  comapnay: MyString

@@ -1,0 +1,17 @@
+<div class="sidebar-package">
+  <div class="sidebar-package-image">
+    <img src="<%= url_for hotel.hotel_cover_photos[0] %>" alt="Images">
+  </div>
+  <div class="destination-content sidebar-package-content">
+    <h4><a href="<%= hotel_path hotel %>"> <%= hotel.name %> </a></h4>
+    <div class="deal-rating">
+<!--      <span class="fa fa-star checked"></span>-->
+<!--      <span class="fa fa-star checked"></span>-->
+<!--      <span class="fa fa-star checked"></span>-->
+<!--      <span class="fa fa-star-o"></span>-->
+<!--      <span class="fa fa-star-o"></span>-->
+    </div>
+    <p><i class="flaticon-time"></i> Starting from <span class="bold"><%= hotel.hotel_rooms.minimum(:price) %></span> </p>
+    <a href="<%= hotel_path hotel %>" class=" btn-red">View Now</a>
+  </div>
+</div>

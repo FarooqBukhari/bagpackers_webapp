@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 traffic">
+    <div class="dashboard-list-box">
+      <h4 class="gray">Tour Reviews</h4>
+      <div class="table-box">
+        <table class="basic-table">
+          <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Tour Name</th>
+            <th>Review Text</th>
+            <th>Rating</th>
+            <th>Date</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @tour_reviews.each do |review| %>
+            <tr >
+              <td> <a href="<%= user_path(review.user) %>"> <%= review.user.name %></a>  </td>
+              <td ><%= review.tour.title %></td>
+              <td><%= review.review_text %></td>
+              <td class="t-id"><%= review.rating %></td>
+              <td><%= review.created_at %></td>
+            </tr>
+          <% end %>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

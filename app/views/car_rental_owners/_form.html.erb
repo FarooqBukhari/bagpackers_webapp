@@ -1,0 +1,69 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Affiliate your Car Rental Business With Us </h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Feed</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Car Rental Owner Affiliation</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="booking-form booking-outer">
+          <%= form_with(model: car_rental_owner, local: true) do |form| %>
+            <% if car_rental_owner.errors.any? %>
+              <ul>
+                <% car_rental_owner.errors.full_messages.each do |message| %>
+                  <p style="color: red"><%= message %></p>
+                <% end %>
+              </ul>
+            <% end %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :company_name, class:"label-login" %>
+                <%= form.text_field :company_name, class:"form-control label-input" %>
+              </div>
+
+              <div class="form-group col-xs-6 ">
+                <%= form.label :company_logo, class:"label-login"  %>
+                <%= form.file_field :company_logo, class:"form-control" %>
+              </div>
+
+              <div class="col-xs-12">
+                <button type="submit" data-hover="Affiliate With Us" class="btn btn-red">
+                  <span class="text">Submit</span>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sedpr do eiusmod tempor incididunt ut.</p>
+              <p><i class="flaticon-phone-call"></i> (012)-345-6789</p>
+              <p><i class="flaticon-mail"></i> tourntravel@testmail.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+

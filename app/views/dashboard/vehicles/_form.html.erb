@@ -1,0 +1,78 @@
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="booking-form booking-outer">
+          <div id="hotel-room-<%= hotel_room.id %>">
+
+            <%= form_for([:dashboard, hotel, hotel_room], local: true, class: "custom-form", remote: true, authenticity_token: true) do |form| %>
+
+              <div id="error_explanation2-<%= hotel_room.id %>">
+                <% if hotel_room.errors.any? %>
+                  <h2><%= pluralize(hotel_room.errors.count, "error") %> prohibited this hotel_room from being saved:</h2>
+                  <ul>
+                    <% hotel_room.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+              <div class="login-title">Add a New Hotel Room Type</div>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :room_type, class:"label-login" %>
+                <%= form.select :room_type, options_for_select([["Select One", "Simple"], "Single Room", "Double Room", "Triple Room", "Quad Room", "Twin Room","Luxury Room","Studio","Mini Suite","Master Suite","Hut","Cottage"], selected: hotel_room.room_type || nil ), {},:class => 'form-control label-input' %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :price, class:"label-login" %>
+                <%= form.number_field :price, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6 ">
+                <%= form.label :number_of_beds, class:"label-login" %>
+                <%= form.number_field :number_of_beds, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :hotel_room_pictures, class:"label-login"  %>
+                <%= form.file_field :hotel_room_pictures, class:"form-control", multiple:"true" %>
+              </div>
+              <div class="form-group col-xs-12">
+                <div class="col-md-12">
+                  <div class="form-login">
+                    <div class="input-login">
+                      <label for="hotel_facility_name_id">Room Facilities</label>
+                      
+                      <% if keys.empty? %>
+                        <% @hotel_room_facilities_name.each do |facility| %>
+                          <%= check_box_tag("facilities[]" , facility.id) %>
+                          <%= facility.name %>
+
+                        <% end %>
+                      <% else %>
+                        <% @hotel_room_facilities_name.each do |facility| %>
+                          <% if hotel_room[keys[(facility.id)+2]] %>
+                            <%= check_box_tag("facilities[]" , facility.id , checked: true) %>
+                          <% else %>
+                            <%= check_box_tag("facilities[]" , facility.id) %>
+                          <% end %>
+                          <%= facility.name %>
+
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit" data-hover="Add Room" class="btn btn-red">
+                  <span class="text">Add Room </span>
+                </button>
+              </div>
+            </div>
+              </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

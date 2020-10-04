@@ -1,0 +1,222 @@
+
+<!-- start Container Wrapper -->
+<div id="container-wrapper">
+  <!-- Dashboard -->
+  <div id="dashboard">
+
+    <!-- Responsive Navigation Trigger -->
+    <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+
+    <div class="dashboard-sticky-nav">
+      <div class="content-left pull-left">
+        <a href="<%= root_path %>"><img src="<%= image_path 'logo_bagpackers' %>" alt="logo" style="height: 50px; width: 50px"></a>
+      </div>
+      <div class="content-right pull-right">
+        <div class="search-bar">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="search" placeholder="Search Now">
+              <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+            </div>
+          </form>
+        </div>
+        <div class="dropdown">
+          <a href="<%= car_rental_owner_path(@car_rental_owner) %>">
+            <div class="profile-sec">
+              <div class="dash-image">
+                <img src="<%= url_for @car_rental_owner.company_logo  %>" alt="">
+              </div>
+              <div class="dash-content">
+                <h4><%= @car_rental_owner.company_name %></h4>
+                <span>Car Rental Owner</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <div class="dropdown-item">
+              <i class="sl sl-icon-envelope-open"></i>
+              <span class="notify">3</span>
+            </div>
+          </a>
+          <div class="dropdown-menu notification-menu">
+            <h4> 23 Messages</h4>
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <p class="all-noti"><a href="#">See all messages</a></p>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <div class="dropdown-item">
+              <i class="sl sl-icon-bell"></i>
+              <span class="notify">3</span>
+            </div>
+          </a>
+          <div class="dropdown-menu notification-menu">
+            <h4> 599 Notifications</h4>
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <p class="all-noti"><a href="#">See all notifications</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-nav">
+      <div class="dashboard-nav-inner nav-tabs">
+        <ul>
+          <li class="active"><a data-toggle="tab" href="#home"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+          <li><a  data-toggle="tab" href="#profile" ><i class="sl sl-icon-user"></i> Edit Profile</a></li>
+          <li><a data-toggle="tab" href="#tour" ><i class="sl sl-icon-plus"></i> Add Car Rental</a></li>
+          <li><a data-toggle="tab" href="#tours"><i class="sl sl-icon-layers"></i> Car Rental Listing</a></li>
+          <li><%= link_to ' Logout', destroy_user_session_path, method: :delete, class: "sl sl-icon-power" %><i class=""></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div class="dashboard-content tab-pane fade in active" id="home" >
+        <div class="row">
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-1">
+              <div class="dashboard-stat-content"><h4><%= @car_rental_owner.car_rentals.count  %></h4> <span>Total Car Rentals</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-2">
+              <div class="dashboard-stat-content"><h4><%= @car_rental_owner.car_rentals.count  %></h4> <span>Total Vehicles</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <!-- site traffic -->
+          <div class="col-lg-4 col-md-4 mar-b-30">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Site Traffic</h4>
+              <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mar-b-30">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Bar Chart</h4>
+              <div id="barchart" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Search Engine</h4>
+              <div id="piechart" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content tab-pane fade" id="tour">
+        <div class="row">
+          <%= render "dashboard/car_rentals/form", car_rental: @car_rental %>
+        </div>
+      </div>
+
+      <div class="dashboard-content tab-pane fade" id="tours">
+        <div class="row">
+          <%= render "dashboard/car_rentals/index", locals: @car_rentals %>
+        </div>
+      </div>
+
+
+      <div class="dashboard-content tab-pane fade" id="profile">
+        <div class="row">
+          <%= render "dashboard/car_rental_owners/form", car_rental_owner: @car_rental_owner %>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Content / End -->
+
+  </div>
+  <!-- Dashboard / End -->
+</div>
+<!-- end Container Wrapper -->

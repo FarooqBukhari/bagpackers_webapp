@@ -1,0 +1,62 @@
+<section class="login" style=" background-image: url('<%= asset_path '1KhapluPalace.jpeg' %>') ; background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover; margin: 0 auto!important;  text-align: center!important;">
+  <div class="container" style="   background-color:#ffffff;  margin-top:-60px;  width: fit-content !important; text-align: center!important;">
+    <div class="row ">
+      <div class="">
+        <div class="login-form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="row ">
+
+              <div class="">
+                <div class="form-title">
+                  <h2>Sign Up</h2>
+                  <p>Join The Biggest Travelling Community of Pakistan</p>
+                </div>
+              </div>
+              <div >
+                <div id="profile-container" style="text-align: center !important;display:block;
+                    margin:auto;">
+                  <img style="text-align: center !important; align-items: center !important;" id="profileImage" src="<%=image_path 'user_default' %>" />
+                  <%= f.file_field :profile_picture ,class:'profile-container file'%>
+                </div>
+                <!--              <input id="imageUpload" type="file" style="text-align: center"-->
+                <!--                     name="profile_photo" placeholder="Photo" required="" capture>-->
+              </div>
+              <div class="">
+                <label>Name:</label>
+
+                <%= f.text_field :name, autofocus: true,class:"form-control ",required: true, placeholder:"Enter your name" %>
+              </div>
+              <div class="">
+                <label>Email:</label>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control",required: true, placeholder:"abc@xyz.com" %>
+              </div>
+              <div class="">
+                <label>Select Password (6 characters minimum)  :</label>
+                <% if @minimum_password_length %>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password",class:"form-control label-input",required: true, placeholder:"Enter your password" %>
+              </div>
+              <div class="">
+                <label>Confirm Password :</label>
+                <%= f.password_field :password_confirmation,placeholder:"Re-enter your password", autocomplete: "new-password",class:"form-control label-input",required: true %>
+              </div>
+              <div class="">
+                <div class="checkbox-outer">
+                  <input type="checkbox" name="vehicle2" value="Car"> I agree to the <a href="#">terms and conditions.</a>
+                </div>
+              </div>
+              <div style="color: red"> <%= render "devise/shared/error_messages", resource: resource %></div>
+              <div class="" style="text-align: center">
+                <div class="comment-btn">
+                  <%= f.submit "Create Account", class:"comment-btn  btn-blue btn-red" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

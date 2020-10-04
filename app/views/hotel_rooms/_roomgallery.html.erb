@@ -1,0 +1,25 @@
+<!-- Indicators -->
+<ol class="carousel-indicators">
+  <!-- 1st Indicator -->
+  <% room_pictures.each_with_index do |img,index| %>
+    <% if img == room_pictures[0]%>
+      <li data-target="#in_th_030" data-slide-to="<%= index %>" class="active">
+    <% else %>
+      <li data-target="#in_th_030" data-slide-to="<%= index %>">
+    <% end %>
+    <img src="<%= rails_blob_url(img) %>" alt="room_picture" />
+    </li>
+  <% end %>
+</ol> <!-- /Indicators -->
+<!-- Wrapper For Slides -->
+<div class="carousel-inner" role="listbox">
+  <% room_pictures.each do |img| %>
+    <% if img == room_pictures[0]%>
+      <div class="item active">
+    <% else %>
+      <div class="item">
+    <% end %>
+    <img src="<%= rails_blob_url(img) %>" alt="room_picture" />
+    </div>
+  <% end %>
+</div> <!-- End of Wrapper For Slides -->

@@ -1,0 +1,154 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Become a Trip Organizer</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%=feed_path %>">Feed</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Become a Trip Organizer</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="booking-form booking-outer">
+          <%= form_with(model: trip_organizer, local: true) do |form| %>
+            <% if trip_organizer.errors.any? %>
+              <ul>
+                <% trip_organizer.errors.full_messages.each do |message| %>
+                  <p style="color: red"><%= message %></p>
+                <% end %>
+              </ul>
+            <% end %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :company_name, class:"label-login" %>
+                <%= form.text_field :company_name, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :company_email, class:"label-login" %>
+                <%= form.text_field :company_email, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6 ">
+                <%= form.label :company_number, class:"label-login" %>
+                <%= form.text_field :company_number, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :address, class:"label-login"  %>
+                <%= form.text_field :address, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-5">
+                <%= form.label :url, class:"label-login"  %>
+                <%= form.text_field :url, class:"form-control label-input" %>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :about,style: 'text-transform: capitalize;' , class:"label-login"  %>
+                <%= form.cktext_area :about, class:"form-control" %>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :terms, style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.cktext_area :terms, class:"form-control label-input" %>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :cancellation_policy, style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.cktext_area :cancellation_policy, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :license,  style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.file_field :license, class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :company_logo ,style: 'text-transform: capitalize;', class:"label-login"  %>
+                <%= form.file_field :company_logo, class:"form-control" %>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit" data-hover="Become Organizer" class="btn btn-red">
+                  <span class="text">Become organizer</span>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+        <div id="sidebar-sticky" class="col-md-4">
+          <aside class="detail-sidebar sidebar-wrapper">
+            <div class="sidebar-item">
+              <div class="detail-title">
+                <h3>Popular Packages</h3>
+              </div>
+              <div class="sidebar-content sidebar-slider">
+                <div class="sidebar-package">
+                  <div class="sidebar-package-image">
+                    <img src="<%= image_path 'detailslider1.jpg' %>" alt="Image">
+                  </div>
+                  <div class="destination-content sidebar-package-content">
+                    <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                    <div class="deal-rating">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-o"></span>
+                      <span class="fa fa-star-o"></span>
+                    </div>
+                    <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                    <a href="#" class="btn-blue btn-red">Book Now</a>
+                  </div>
+                </div>
+                <div class="sidebar-package">
+                  <div class="sidebar-package-image">
+                    <img src="<%= image_path 'detailslider2.jpg' %>" alt="Image">
+                  </div>
+                  <div class="destination-content sidebar-package-content">
+                    <h4><a href="tour-detail.html">Bahamas Royal Cruises</a></h4>
+                    <div class="deal-rating">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-o"></span>
+                      <span class="fa fa-star-o"></span>
+                    </div>
+                    <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                    <a href="#" class="btn-blue btn-red">Book Now</a>
+                  </div>
+                </div>
+                <div class="sidebar-package">
+                  <div class="sidebar-package-image">
+                    <img src="<%= image_path 'detailslider3.jpg' %>" alt="Image">
+                  </div>
+                  <div class="destination-content sidebar-package-content">
+                    <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                    <div class="deal-rating">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-o"></span>
+                      <span class="fa fa-star-o"></span>
+                    </div>
+                    <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                    <a href="#" class="btn-blue btn-red">Book Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-item sidebar-helpline">
+              <div class="sidebar-helpline-content">
+                <h3>Any Questions?</h3>
+                <p>Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sedpr do eiusmod tempor incididunt ut.</p>
+                <p><i class="flaticon-phone-call"></i> (012)-345-6789</p>
+                <p><i class="flaticon-mail"></i> tourntravel@testmail.com</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+    </div>
+  </div>
+</section>

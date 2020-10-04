@@ -1,0 +1,6 @@
+$('#review_box').prepend('<%= render "tour_reviews/tour_review", review: @tour_review %>');
+document.getElementById("tour-review-<%= @tour_review.id %>").scrollIntoView();
+$('#tour_review_review_text')[0].value = "";
+$('#tour_review_rating')[0].value = "";
+$('#stars > li').removeClass("selected");
+$('.comments-form').remove();

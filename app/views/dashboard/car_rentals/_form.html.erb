@@ -1,0 +1,77 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Add A New Hotel</h2>
+      <nav aria-label="breadcrumb">
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="booking-form booking-outer">
+          <%= form_for([:dashboard, car_rental], local: true, class: "custom-form", remote: true, authenticity_token: true) do |form| %>
+            <div id="error_explanation">
+            <% if car_rental.errors.any? %>
+                  <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+                  <ul>
+                    <% car_rental.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+            <% end %>
+            </div>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :name, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :name,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :info, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :info,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :number, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.number_field :number,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :address, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :address,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :email, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :email,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :website_url, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :website_url,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :car_rental_photos, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.file_field :car_rental_photos,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control", multiple:"true" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <label>Location</label>
+                <%=  form.collection_select(:location_id, Location.all, :id, :name, prompt: true, class:"form-control required", required:"true" )%>
+              </div>
+
+
+
+              <div class="col-xs-12">
+                <div class="comment-btn">
+                  <%= form.submit "Add Hotel", class: "btn-blue btn-red" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

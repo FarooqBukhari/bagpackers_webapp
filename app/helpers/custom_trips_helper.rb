@@ -1,0 +1,2 @@
+module CustomTripsHelper
+end

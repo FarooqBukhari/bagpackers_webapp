@@ -1,0 +1,19 @@
+<div class="feature-tour">
+  <%= form_for([:dashboard,featured_tour.hotel,featured_tour], url: dashboard_hotel_featured_hotels_path, hotel_id: featured_tour.hotel) do |form| %>
+    <div class=flag-wrapper"">
+      <h3>Your Hotel will be featured on our website. Charges 500pkr per week.</h3>
+      <p> The Hotel you've selected is: <%= featured_tour.hotel.name %></p>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label class="label-login">Number of weeks</label>
+        <%=  form.number_field :duration ,placeholder:"Number only", style: 'text-transform: capitalize; ', class:"form-control" %>
+      </div>
+      <div class="col-xs-12">
+        <div class="comment-btn">
+          <%= form.submit "Feature Hotel", class: "btn-blue btn-red" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

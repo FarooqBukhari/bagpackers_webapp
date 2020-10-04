@@ -1,0 +1,22 @@
+<div class="col-md-4 col-sm-12">
+  <div class="deals-item">
+    <div class="deals-item-outer">
+      <div class="deals-image" style="width: 100%; height: 250px;">
+        <img src="<%=url_for(tour.image)%>" style="height: 100%;"alt="Image">
+        <span class="deal-price"><%= tour.price %></span>
+      </div>
+      <div class="deal-content">
+        <div class="deal-rating">
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star-o"></span>
+          <span class="fa fa-star-o"></span>
+        </div>
+        <h3><%= tour.title %></h3>
+        <p>Seats <%= tour.seats %></p>
+        <a href="<%= tour_path(tour)%>" class="btn-blue btn-red">More Details</a>
+      </div>
+    </div>
+  </div>
+</div>

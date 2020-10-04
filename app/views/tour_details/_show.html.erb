@@ -1,0 +1,26 @@
+<div class="timeline col-md-12" id="tour-details-<%= tour_detail.id %>">
+  <div class="timeline-block">
+    <div class="timeline-title">
+        <span>Day
+          <%= tour_detail.day + 1 %>
+        </span>
+    </div>
+    <div class="timeline-content medium-margin-top">
+      <div class="row">
+        <div class="timeline-point">
+          <i class="fa fa-circle-o"></i>
+        </div>
+        <div class="">
+          <div class="timeline-location-block">
+            <p class="location-name">
+              <%= tour_detail.location %>
+              <i class="fa fa-map-marker icon-marker"></i>
+            </p>
+            <p class="description">
+              <%= tour_detail.description %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

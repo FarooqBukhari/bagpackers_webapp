@@ -1,0 +1,22 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info locations %>
+  </div>
+  <% locations.each do |location| %>
+    <div class="col-md-4 col-sm-6 col-xs-12" id="location-<%= location.id %>">
+      <div class="package-item">
+        <a href="<%= location_path(location) %>">
+        <div class="hotel-thumbnail">
+          <%= image_tag (url_for location.images[0]), class: "hotel-cover-photo-thumbnail" %>
+        </div>
+        <div class="package-content" >
+          <h3><a href="<%= location_path(location) %>"><%= location.name %></a></h3>
+          <div class="thumbnail-description smaller">
+            <%#= location.description %>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>

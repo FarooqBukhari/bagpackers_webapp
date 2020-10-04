@@ -1,0 +1,86 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Hotels</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Car Rentals</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<!-- Popular Packages -->
+<section class="popular-packages pad-bottom-80">
+  <div class="container">
+    <div class="section-title" style="padding: 20px 0px 0px 0px;">
+      <h2>Popular <span>Hotels</span></h2>
+    </div>
+    <div class="filter-form">
+      <%#
+        Filterrific adds the `form_for_filterrific` view helper:
+        * adds dom id 'filterrific_filter'
+        * applies javascript behaviors:
+            * AJAX form submission on change
+            * AJAX spinner while AJAX request is being processed
+        * sets form_for options like :url, :method and input name prefix
+      %>
+      <%= form_for_filterrific @filterrific do |f| %>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            Search
+            <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed'
+                ) %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            Location
+            <%= f.select(
+                    :with_locations_id,
+                    @filterrific.select_options[:with_locations_id],
+                    { include_blank: '- Any -' },
+                    class: "js-example-basic-single"
+                ) %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            Car Rental Owners
+            <%= f.select(
+                    :with_car_rental_owners,
+                    @filterrific.select_options[:with_car_rental_owners],
+                    { include_blank: '- Any -' },
+                    class: "js-example-basic-single"
+                ) %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <%= link_to(
+                    'Reset filters',
+                    reset_filterrific_url,
+                    ) %>
+          </div>
+          <%# add an automated spinner to your form when the list is refreshed %>
+          <%= render_filterrific_spinner %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row" id="car-rentals-div">
+      <%= render "car_rentals/car_rental", car_rentals: @car_rentals %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="pagination-content digg_pagination">
+          <div class="pagination" id="car-rental-paginate" >
+            <%= js_will_paginate @car_rentals %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Popular Packages Ends -->

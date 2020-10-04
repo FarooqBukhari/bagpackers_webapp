@@ -1,0 +1,13 @@
+<% tourismtypes.each do |tourismtype| %>
+  <div class="col-md-4 col-xs-4">
+    <div class="top-destination-item"style=" width: 100%; height: 300px; ">
+      <% if tourismtype.tourism_type_picture.attached? %>
+      <img class="img-responsive" src="<%= (url_for tourismtype.tourism_type_picture)%>"  style="height: 100%;"alt="Image">
+      <% end %>
+      <div class="overlay">
+      <h2><a href="#"><%= tourismtype.name %></a></h2>
+      <p>Experience  <%= tourismtype.name %> in Pakistan.</p>
+      </div>
+    </div>
+  </div>
+<%end %>

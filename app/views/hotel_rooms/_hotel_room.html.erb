@@ -1,0 +1,13 @@
+<div class="col-sm-4" id="hotel-room-<%#= hotel_room.id %>">
+  <div class="package-item">
+    <a href="<%= hotel_hotel_room_path(hotel_room.hotel,hotel_room) %>">
+      <div class="hotel-room-thumbnail">
+        <%= image_tag hotel_room.hotel_room_pictures[0],class: "hotel-cover-photo-thumbnail", alt:'Hotel Room' %>
+      </div>
+      <div class="package-content">
+        <h5>Starting: <span>$<%= hotel_room.price %></span> / PER </h5>
+        <h3><a href="#"><%= hotel_room.room_type %></a></h3>
+      </div>
+    </a>
+  </div>
+</div>

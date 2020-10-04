@@ -1,0 +1,10 @@
+<div class="sidebar-package">
+  <div class="sidebar-package-image">
+    <img src="<%= url_for car_rental_owner.company_logo %>" alt="Images">
+  </div>
+  <div class="destination-content sidebar-package-content">
+    <h4><a href="<%= car_rental_owner_path car_rental_owner %>"><%= car_rental_owner.company_name %></a></h4>
+    <p><i class="flaticon-box"></i> Tours Car Rentals    <span class="bold"><%= car_rental_owner.car_rentals.count %></span> </p>
+    <a href="<%= car_rental_owner_path car_rental_owner %>" class="btn-blue btn-red">View Now</a>
+  </div>
+</div>

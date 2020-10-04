@@ -1,0 +1,193 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2><%= @hotel_room.room_type %></h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="<%= hotel_path(@hotel) %>"><%= @hotel.name %></a></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @hotel_room.room_type %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<!-- hotel detail -->
+<section class="main-content detail pad-bottom-80">
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @hotel_room.room_type %></h2>
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <%= render 'roomgallery', room_pictures:@hotel_room.hotel_room_pictures %>
+            </div> <!-- End Paradise Slider -->
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Description</h3>
+            </div>
+            <div class="description-content">
+              <table>
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="title">Hotel Name</td>
+                  <td><i class="fa fa-map-marker" aria-hidden="true"></i><%= @hotel.name %></td>
+                </tr>
+                <tr>
+                  <td class="title">Room Type</td>
+                  <td><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @hotel_room.room_type %></td>
+                </tr>
+                <tr>
+                  <td class="title">Price</td>
+                  <td><i class="fa fa-user-o" aria-hidden="true"></i> <%= @hotel_room.price %></td>
+                </tr>
+                <tr>
+                  <td class="title">Number of Beds</td>
+                  <td><i class="fa fa-user-o" aria-hidden="true"></i> <%= @hotel_room.number_of_beds %></td>
+                </tr>
+                <tr>
+                  <td class="title">Includes</td>
+                  <td>
+                    <ul>
+                      <%= render 'includedfacilities', HotelRoom:@hotel_room %>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">Excludes</td>
+                  <td class="excludes">
+                    <ul>
+                      <%= render 'excludedfacilities', HotelRoom:@hotel_room %>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">Popular Places Around</td>
+                  <td>
+                    <ul>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                    </ul>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="location-map detail-box">
+            <div class="detail-title">
+              <h3>Location Map</h3>
+            </div>
+            <div class="map-frame">
+              <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCgSulG2ADv-xNvPK86aJqAaBPZchBEiQk
+                &q=<%= @hotel.address %>" allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <% if @hotel_reviews.any? %>
+          <div class="comments detail-box">
+            <div class="detail-title">
+              <h3>Comments</h3>
+            </div>
+            <div class="comment-content" id="review_box">
+              <% if @hotel_reviews.empty? %>
+                <div class="comment-item">
+                  No yet Rated!
+                </div>
+              <% end %>
+              <% @hotel_reviews.each do |review| %>
+                <%= render "hotel_reviews/hotel_review", review: review  %>
+              <% end %>
+              <div id="hotel_review_paginate">
+                <%= paginate @hotel_reviews %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+          <% if !( @hotel.hotel_manager.user == current_user or @hotel.hotel_reviews.exists?(user_id: current_user) ) %>
+            <div class="comments-form detail-box">
+            <div class="detail-title">
+              <h3>Give Your Feedback</h3>
+            </div>
+            <div class="row">
+              <%= render 'hotel_reviews/form', hotel_review: @hotel_review %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item sidebar-item-dark" id="contact-info">
+            <div class="detail-title">
+              <h3>Contact Information</h3>
+            </div>
+            <form>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <input type='text' class="form-control" value="<%= @hotel.hotel_manager.company_name %>" readonly/>
+                </div>
+                <div class="form-group col-xs-12">
+                  <input type='text' class="form-control" value="<%= @hotel.email %>" readonly/>
+                </div>
+
+                <div class="form-group col-xs-12">
+                  <input type='text' class="form-control" value="<%= @hotel.number %>" readonly/>
+                </div>
+
+                <div class="form-group col-xs-12">
+                  <input type='text' class="form-control" value="<%= @hotel.location.name %>" readonly/>
+                </div>
+
+                <% if !(@hotel.website_url.empty?) %>
+                  <div class="col-xs-12">
+                    <div class="comment-btn">
+                      <a href="<%= @hotel.website_url %>" class="btn-red btn-red">VISIT US</a>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Related Room</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <%= render 'relatedrooms', hotel:@hotel , current_room:@hotel_room %>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Click below to get our contact information.</p>
+              <div class="cta-btn">
+                <a href="#contact-info" class="btn-red btn-red">CONTACT US NOW</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hotel Detail Ends -->

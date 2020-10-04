@@ -1,0 +1,26 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info car_rentals %>
+  </div>
+  <% car_rentals.each do |car_rental| %>
+    <div class="col-md-4 col-sm-6 col-xs-12" id="car_rental-<%= car_rental.id %>">
+      <div class="package-item">
+        <a href="<%= car_rental_path(car_rental) %>">
+          <div class="hotel-thumbnail">
+            <% if car_rental.car_rental_photos.attached? %>
+              <%= image_tag url_for(car_rental.car_rental_photos[0])  , class: "hotel-cover-photo-thumbnail", alt:"Image"%>
+            <% else %>
+              <%= image_tag url_for("")  , class: "hotel-cover-photo-thumbnail", alt:"Image" %>
+            <% end %>
+          </div>
+          <div class="package-content">
+            <h5>Contact: <span><%= car_rental.number %></span></h5>
+            <h3><a href="<%= car_rental_path(car_rental) %>"><%= car_rental.name %></a></h3>
+            <p><%= car_rental.address %></p>
+            <p> <i class="flaticon-maps-and-flags"></i> <%= car_rental.location.name %> </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>

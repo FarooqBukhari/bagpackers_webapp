@@ -1,0 +1,134 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Car Rental Owner Details</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%=tours_path %>">Tour</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Car Rental Owner Details</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="main-content detail">
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @car_rental_owner.company_name%></h2>
+              <p class="detail-info-price">Total Car Rentals: <span class="bold"><%= @car_rental_owner.car_rentals.count  %></span></p>
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <!-- 1st Indicator -->
+                <li data-target="#in_th_030" data-slide-to="0" class="active">
+                  <!-- 1st Indicator Image -->
+                  <img src="<%= url_for @car_rental_owner.company_logo %>"/>
+                </li>
+
+              </ol> <!-- /Indicators -->
+              <!-- Wrapper For Slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First Slide -->
+                <div class="item active">
+                  <!-- Slide Background -->
+                  <img src="<%= url_for @car_rental_owner.company_logo %>"/>
+                </div>
+                <!-- End of Slide -->
+              </div> <!-- End of Wrapper For Slides -->
+            </div> <!-- End Paradise Slider -->
+          </div>
+          <div class="top-attractions detail-box">
+            <div class="detail-title">
+              <h3>Car Rentals Owned By Us</h3>
+            </div>
+            <div class="top-attraction-content">
+              <% @car_rental_owner.car_rentals.each do |car_rental| %>
+                <div class="att-item clearfix">
+                  <a href="<%= tour_path(tour) %>">
+                    <div class="att-image">
+                      <%= image_tag url_for(car_rental.car_rental_photos[0]), alt: 'img'%>
+                    </div>
+                    <div class="att-content">
+                      <div class="att-content-left">
+                        <h4><%= car_rental.name %></h4>
+                        <ul>
+                          <li><i class="fa fa-check" aria-hidden="true"></i>Total Vehicles: <%= car_rental.vehicles.count %></li>
+                          <li><i class="fa fa-check" aria-hidden="true"></i>Location: <%= car_rental.location %></li>
+                        </ul>
+                      </div>
+<!--                      <div class="att-content-right" style="margin-bottom: 5px!important;">-->
+<!--                        <p style="text-align: center!important;margin-top: -10px!important;">Cost per Seat: <span class="bold"><%#= tour.price %></span></p>-->
+<!--                        <p style="text-align: center!important;margin-top: -10px!important;">Duration: <span class="bold"><%#= tour.duration %></span></p>-->
+
+<!--                      </div>-->
+                    </div>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item sidebar-item-dark" id="organizer_contact">
+            <div class="detail-title">
+              <h3>Basic Information</h3>
+            </div>
+            <form>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <input type="text" class="form-control" value=" Email: <%=@car_rental_owner.user.email  %>" readonly>
+                </div>
+<!--                <div class="form-group col-xs-12">-->
+<!--                  <input type="text" class="form-control" value="Address: <%#= @trip_organizer.address %>" readonly>-->
+<!--                </div>-->
+<!--                <div class="form-group col-xs-12">-->
+<!--                  <input type="text" class="form-control" value="URL: <%#= @trip_organizer.url %>" readonly>-->
+<!--                </div>-->
+<!--                <div class="form-group col-xs-8">-->
+<!--                  <input type="email" class="form-control" value="Contact Number: <%#= @trip_organizer.company_number %>" readonly>-->
+<!--                </div>-->
+                <div class="form-group col-xs-8">
+                  <% if @car_rental_owner.user !=  current_user %>
+                    <%= link_to "Message", conversations_path(user_id: @car_rental_owner.user.id), remote: true, method: :post, class: "btn btn-blue" %>
+                  <% end %>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-item ">
+            <div class="detail-title">
+              <h3>More Owners</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% @car_rental_owners.each do |car_rental_owner| %>
+                <%= render "car_rental_owners/related_owners", car_rental_owner: car_rental_owner %>
+              <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Feel free to contact the organizer on the provided information</p>
+              <p> Happy Travelling !</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

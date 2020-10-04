@@ -1,0 +1,6 @@
+$("#tour_errors").innerText = "";
+$("#tour_errors").append("<%= escape_javascript( render ('devise/shared/error_messages'), resource: @tour) %>");
+
+$('html, body').animate({
+    scrollTop: $("#tour_errors").offset().top
+}, 1000);

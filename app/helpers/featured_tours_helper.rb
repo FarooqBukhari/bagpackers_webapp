@@ -1,0 +1,2 @@
+module FeaturedToursHelper
+end

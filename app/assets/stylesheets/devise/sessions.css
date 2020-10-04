@@ -1,0 +1,29 @@
+@import "../theme_files/bootstrap.min.css";
+@import "../theme_files/style.css.scss";
+@import "flaticon.css";
+@import "../theme_files/plugin.css";
+
+.reg_separator {
+    font-size: 10px;
+    line-height: 14px;
+    color: #767676;
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+}
+.separator_text {
+    position: relative;
+    top: -8px;
+    padding: 0 6px;
+    font-weight: 600;
+    background-color: #fbfbfb;
+}
+.reg_separator_wrap {
+    padding: 8px 0;
+    text-align: center;
+}
+.reg_separator.newRegFormButtonStyles:before {
+    display: block;
+    content: "";
+    border-bottom: 1px solid #e0e0e0;
+}

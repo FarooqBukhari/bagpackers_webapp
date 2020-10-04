@@ -1,0 +1,5 @@
+$('div[id^="tour-review-"]').remove();
+<%= @tour_reviews.each do |review| %>
+$("#review_box").html("<%= escape_javascript(render  "tour_reviews/tour_review", review: review) %>");
+<% end %>
+$("#tour_review_paginate").html("<%= j js_will_paginate @tour_reviews %>");

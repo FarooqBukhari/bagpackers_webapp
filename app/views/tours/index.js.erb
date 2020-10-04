@@ -1,0 +1,5 @@
+<% js = escape_javascript(
+  render(partial: 'tours/tour', locals: { tours: @tours })
+) %>
+$("#filterrific_results").html("<%= js %>");
+$(".pagination-content").html("<%= escape_javascript js_will_paginate @tours %>");

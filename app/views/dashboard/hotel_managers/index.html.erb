@@ -1,0 +1,329 @@
+
+<!-- start Container Wrapper -->
+<div id="container-wrapper">
+  <!-- Dashboard -->
+  <div id="dashboard">
+
+    <!-- Responsive Navigation Trigger -->
+    <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+
+    <div class="dashboard-sticky-nav">
+      <div class="content-left pull-left">
+        <a href="<%= root_path %>"><img src="<%= image_path 'logo_bagpackers' %>" alt="logo" style="height: 50px; width: 50px"></a>
+      </div>
+      <div class="content-right pull-right">
+        <div class="search-bar">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="search" placeholder="Search Now">
+              <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+            </div>
+          </form>
+        </div>
+        <div class="dropdown">
+          <a href="<%= hotel_manager_path(@hotel_manager) %>">
+            <div class="profile-sec">
+              <div class="dash-image">
+                <img src="<%= url_for @hotel_manager.company_logo  %>" alt="">
+              </div>
+              <div class="dash-content">
+                <h4><%= @hotel_manager.company_name %></h4>
+                <span>Hotel Manager</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <div class="dropdown-item">
+              <i class="sl sl-icon-envelope-open"></i>
+              <span class="notify">3</span>
+            </div>
+          </a>
+          <div class="dropdown-menu notification-menu">
+            <h4> 23 Messages</h4>
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <p class="all-noti"><a href="#">See all messages</a></p>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <div class="dropdown-item">
+              <i class="sl sl-icon-bell"></i>
+              <span class="notify">3</span>
+            </div>
+          </a>
+          <div class="dropdown-menu notification-menu">
+            <h4> 599 Notifications</h4>
+            <ul>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="notification-item">
+                    <div class="notification-image">
+                      <img src="<%= image_path 'comment.jpg'  %>" alt="">
+                    </div>
+                    <div class="notification-content">
+                      <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <p class="all-noti"><a href="#">See all notifications</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-nav">
+      <div class="dashboard-nav-inner nav-tabs">
+        <ul>
+          <li class="active"><a data-toggle="tab" href="#home"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+          <li><a  data-toggle="tab" href="#profile" ><i class="sl sl-icon-user"></i> Edit Profile</a></li>
+          <li><a data-toggle="tab" href="#tour" ><i class="sl sl-icon-plus"></i> Add Hotel</a></li>
+          <li><a data-toggle="tab" href="#tours"><i class="sl sl-icon-layers"></i> Hotel Listing</a></li>
+          <li><a data-toggle="tab" href="#bookings"><i class="sl sl-icon-list"></i> Booking List</a></li>
+          <li><a data-toggle="tab" href="#reviews"><i class="sl sl-icon-star"></i> Reviews</a></li>
+          <li><%= link_to ' Logout', destroy_user_session_path, method: :delete, class: "sl sl-icon-power" %><i class=""></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div class="dashboard-content tab-pane fade in active" id="home" >
+        <div class="row">
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-1">
+              <div class="dashboard-stat-content"><h4><%= @hotel_manager.hotels.count  %></h4> <span>Total Hotels</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-2">
+              <div class="dashboard-stat-content"><h4><%= @hotel_manager.hotels.count  %></h4> <span>Total Bookings</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
+            </div>
+          </div>
+
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-3">
+              <div class="dashboard-stat-content"><h4><%= @hotel_manager.hotel_reviews.count  %></h4> <span>Total Reviews</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="dashboard-stat color-4">
+              <div class="dashboard-stat-content"><h4><%=  number_with_precision(@hotel_manager.hotel_reviews.average(:rating), precision: 2) %></h4> <span>Rating</span></div>
+              <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-xs-12 traffic">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Recent Bookings</h4>
+              <div class="table-box">
+                <table class="basic-table">
+                  <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>User Name</th>
+                    <th>Tour Name</th>
+                    <th>No of Tickets</th>
+                    <th>Payment Amount</th>
+                    <th>Payment Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <%# @bookings.limit(5).each do |booking| %>
+<!--                  <tr>-->
+<!--                    <td><%#= booking.updated_at %>></td>-->
+<!--                    <td class="t-id"><a href="<%#= user_path(booking.user) %>"> <%#= booking.user.name %> </a></td>-->
+<!--                    <td><%#= booking.tour.title %></td>-->
+<!--                    <td><%#= booking.no_of_seats %></td>-->
+<!--                    <td><%#= booking.payment_amount %></td>-->
+<!--                    <td><%#= booking.payment_status %></td>-->
+<!--                  </tr>-->
+                  <%# end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Recent Activity -->
+          <div class="col-lg-7 col-md-12 col-xs-12 traffic">
+            <div class="dashboard-list-box with-icons margin-top-20">
+              <h4 class="gray">Recent Activities</h4>
+              <ul>
+                <% @hotel_reviews.limit(5).each do |review| %>
+                <li>
+                  <i class="list-box-icon sl sl-icon-layers"></i>  <strong><a href="<%= user_path(review.user) %>"><%= review.user.name %></a></strong>  left a review with <%= review.rating %> stars on <strong><a href="<%= hotel_path(review.hotel) %>"> <%= review.hotel.name %> </a></strong>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-12 col-xs-12 traffic">
+            <div class="dashboard-list-box margin-top-20 user-list">
+              <h4 class="gray">User List</h4>
+              <ul>
+                <li>
+
+                  <% @users.each do |user| %>
+                    <% user = User.find(user) %>
+                  <div class="user-list-item">
+                    <div class="user-list-image">
+                      <% if user.profile_picture.attached? %>
+                      <img src="<%= url_for user.profile_picture  %>" alt="">
+                      <% else %>
+                        <img src="<%= image_path 'user_default'  %>" alt="">
+                      <% end %>
+                    </div>
+                    <div class="user-list-content">
+                      <h4> <%= user.name %> </h4>
+                    </div>
+                    <div class="user-btns">
+                      <a href="<%= user_path(user) %>" class="button">View</a>
+                    </div>
+                  </div>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- site traffic -->
+          <div class="col-lg-4 col-md-4 mar-b-30">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Site Traffic</h4>
+              <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 mar-b-30">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Bar Chart</h4>
+              <div id="barchart" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4">
+            <div class="dashboard-list-box">
+              <h4 class="gray">Search Engine</h4>
+              <div id="piechart" style="height: 250px; width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content tab-pane fade" id="tour">
+        <div class="row">
+          <%= render "dashboard/hotels/form", hotel: @hotel %>
+        </div>
+      </div>
+
+      <div class="dashboard-content tab-pane fade" id="tours">
+        <div class="row">
+          <%= render "dashboard/hotels/index", locals: @hotels %>
+        </div>
+      </div>
+
+      <div class="dashboard-content tab-pane fade" id="reviews">
+        <div class="row">
+          <%= render 'dashboard/hotel_reviews/index', locals: @hotel_reviews %>
+        </div>
+      </div>
+
+<!--      <div class="dashboard-content tab-pane fade" id="bookings">-->
+<!--        <div class="row">-->
+          <%#= render 'dashboard/bookings/index', locals: @bookings %>
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="dashboard-content tab-pane fade" id="profile">
+        <div class="row">
+          <%= render "dashboard/hotel_managers/form", hotel_manager: @hotel_manager %>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Content / End -->
+
+  </div>
+  <!-- Dashboard / End -->
+</div>
+<!-- end Container Wrapper -->

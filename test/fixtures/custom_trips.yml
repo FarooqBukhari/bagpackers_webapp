@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seats: 1
+  childs: 1
+  rooms: 1
+  departure_city: MyString
+  departure_date: 2020-05-08
+  number_of_days: 1
+
+two:
+  seats: 1
+  childs: 1
+  rooms: 1
+  departure_city: MyString
+  departure_date: 2020-05-08
+  number_of_days: 1

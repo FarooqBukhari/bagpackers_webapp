@@ -1,0 +1,13 @@
+<div class="sidebar-package">
+  <div class="sidebar-package-image">
+    <img src="<%= url_for trip_organizer.company_logo %>" alt="Images">
+  </div>
+  <div class="destination-content sidebar-package-content">
+    <h4><a href="<%= trip_organizer_path trip_organizer %>"><%= trip_organizer.company_name %></a></h4>
+    <div class="deal-rating">
+      <p> Reviews : <span class="bold"><%= trip_organizer.tour_reviews.count  %> </span> </p>
+    </div>
+    <p><i class="flaticon-box"></i> Tours Count    <span class="bold"><%= trip_organizer.tours.count %></span> </p>
+    <a href="<%= trip_organizer_path trip_organizer %>" class="btn-blue btn-red">View Now</a>
+  </div>
+</div>

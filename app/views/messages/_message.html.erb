@@ -1,0 +1,55 @@
+<li >
+  <div class="commenterImage ">
+    <% if  user.id == message.user_id %>
+      <% if user.profile_picture.attached? %>
+        <%= image_tag url_for(user.profile_picture)%>
+      <% else %>
+        <%= image_tag "user_default.png"%>
+      <% end %>
+    <% else %>
+      <% if message.user.profile_picture.attached? %>
+        <%= image_tag url_for(message.user.profile_picture) %>
+      <% else %>
+        <%= image_tag "user_default.png"%>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="commentText">
+    <div class="<%= user.id == message.user_id ? 'message-sent' : 'message-received' %>">
+      <p class=""><%= message.body %></p> <span class="date sub-text"><%= time_ago_in_words message.created_at %></span>
+    </div>
+  </div>
+</li>
+
+
+<%# if  user.id != message.user_id %>
+<!--<li class="chat-left">-->
+<!--  <div class="chat-avatar">-->
+    <%# if message.user.profile_picture.attached? %>
+      <%#= image_tag url_for(message.user.profile_picture) %>
+    <%# else %>
+      <%#= image_tag "user_default.png"%>
+    <%# end %>
+<!--  </div>-->
+<!--    <div class="chat-text">-->
+<!--      <div class="<%#= user.id == message.user_id ? 'message-sent' : 'message-received' %>">-->
+<!--        <p class=""><%#= message.body %></p> <span class="date sub-text"><%#= time_ago_in_words message.created_at %></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</li>-->
+<%# else %>
+<!--<li class="chat-right">-->
+<!--    <div class="chat-text">-->
+<!--      <div class="<%#= user.id == message.user_id ? 'message-sent' : 'message-received' %>">-->
+<!--        <p class=""><%#= message.body %></p> <span class="date sub-text"><%#= time_ago_in_words message.created_at %></span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  <div class="chat-avatar">-->
+    <%# if user.profile_picture.attached? %>
+      <%#= image_tag url_for(user.profile_picture)%>
+    <%# else %>
+      <%#= image_tag "user_default.png"%>
+    <%# end %>
+<!--  </div>-->
+<!--</li>-->
+<%# end %>

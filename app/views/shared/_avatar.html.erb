@@ -1,0 +1,7 @@
+<%= link_to user_path(user) do %>
+  <div class="profile-thumb">
+    <figure class="profile-thumb-middle">
+      <img src="<%= rails_blob_url(current_user.profile_picture) %>" alt="profile picture">
+    </figure>
+  </div>
+<% end %>

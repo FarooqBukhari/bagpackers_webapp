@@ -1,0 +1,87 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Add A New Tour</h2>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="booking-form booking-outer">
+          <div id="tour_errors">
+
+          </div>
+
+          <%= form_for([:dashboard, tour], local: true, class: "custom-form", remote: true, authenticity_token: true ) do |form|  %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :title, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :title,placeholder:"Title", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :price, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :price,placeholder:"Price", style: 'text-transform: capitalize; ', class:"form-control",min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6 ">
+                <%= form.label :duration, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :duration,placeholder:"duration", style: 'text-transform: capitalize; ', class:"form-control", min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :seats, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :seats,placeholder:"Seats", style: 'text-transform: capitalize;', class:"form-control", min:'0', type:"number", onkeypress:"return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+              </div>
+              <div class="form-group col-xs-5">
+                <label>Date:</label>
+                <%= form.date_select :date,placeholder:"Seats", style: 'text-transform: capitalize;', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-4">
+                <label>Type</label>
+                <%=  form.collection_select(:tourims_type_id, TourismType.all, :id, :name, prompt: true, class:"form-control label-input required" )%>
+              </div>
+              <div class="form-group col-xs-3">
+                <label>Source Location</label>
+                <%= form.select :source_location_id, Location.all.collect{|p| [p.name, p.id]},  prompt: true, class:"form-control label-input required", required:"true" %>
+              </div>
+              <div class="form-group col-xs-3">
+                <label>Destination Location</label>
+                <%=  form.collection_select(:locations_id, Location.all, :id, :name, prompt: true, class:"form-control label-input required", required:"true" )%>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :description,style: 'text-transform: capitalize;' , class:"label-login"  %>
+                <%= form.cktext_area :description, class:"form-control" %>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :services_included, style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.cktext_area :services_included, class:"form-control label-input" %>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :services_not_included, style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.cktext_area :services_not_included, class:"form-control label-input" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :image,  style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.file_field :image, class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :trip_images,style: 'text-transform: capitalize;', class:"label-login"  %>
+                <%= form.file_field :trip_images, class:"form-control", multiple:"true" %>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="comment-btn">
+                  <%= form.submit "Add Tour", class: "btn-blue btn-red" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

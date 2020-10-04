@@ -1,0 +1,59 @@
+<div class="col-sm-6" id="book-<%= booking.id %>">
+<div class="tours-layout">
+  <div class="image-wrapper">
+    <a href="<%= url_for booking.tour %>" class="link">
+      <% if booking.tour.image.attached? %>
+        <%= image_tag url_for(booking.tour.image)  , class: "img-responsive", style: "height: 200px" %>
+      <% else %>
+        <%= image_tag url_for("")  , class: "img-responsive", style: "height: 200px" %>
+      <% end %>
+    </a>
+    <div class="title-wrapper">
+      <a href="<%= url_for booking.tour %>" class="title"><%= booking.tour.title %></a>
+      <is class="icons flaticon-circle"></is>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <ul class="list-info list-inline list-unstyle">
+      <li>
+        <a href="#" class="link">
+          <i class="icons fa fa-eye"></i>
+          <span class="text number">234</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="link">
+          <i class="icons fa fa-heart"></i>
+          <span class="text number">234</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="link">
+          <i class="icons fa fa-comment"></i>
+          <span class="text number">234</span>
+        </a>
+      </li>
+    </ul>
+    <div class="content">
+      <div class="title">
+        <div class="price">
+          <sup>Rs</sup>
+          <span class="number"><%= booking.payment_amount %></span>
+        </div>
+      </div>
+      <p class="text"><%= booking.tour.duration %> Days</p>
+      <p class="text"> My Seats <%= booking.no_of_seats %> </p>
+      <p class="text"> Date <%= booking.tour.date.to_s %> </p>
+      <p class="text"> By <%= link_to booking.user.name,user_path(booking.user_id) %> </p>
+    </div>
+    <div class="group-btn-tours" style="text-align: center">
+      <% if !booking.payment_status && booking.user_id == current_user.id %>
+        <%= link_to new_charge_path(booking.id) do %>
+          <button class="btn-primary">Pay Now</button>
+        <% end %>
+        <%= link_to 'Delete', tour_booking_path(booking.tour,booking), class:"btn-danger", method: :delete %>
+      <%end %>
+    </div>
+  </div>
+</div>
+</div>

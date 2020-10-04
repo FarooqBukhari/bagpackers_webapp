@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Custom Trips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Seats</th>
+      <th>Childs</th>
+      <th>Rooms</th>
+      <th>Departure city</th>
+      <th>Departure date</th>
+      <th>Number of days</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_trips.each do |custom_trip| %>
+      <tr>
+        <td><%= custom_trip.seats %></td>
+        <td><%= custom_trip.childs %></td>
+        <td><%= custom_trip.rooms %></td>
+        <td><%= custom_trip.departure_city %></td>
+        <td><%= custom_trip.departure_date %></td>
+        <td><%= custom_trip.number_of_days %></td>
+        <td><%= link_to 'Show', custom_trip %></td>
+        <td><%= link_to 'Edit', edit_custom_trip_path(custom_trip) %></td>
+        <td><%= link_to 'Destroy', custom_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom Trip', new_custom_trip_path %>

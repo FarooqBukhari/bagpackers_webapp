@@ -1,0 +1,21 @@
+<% if user_signed_in? %>
+    <div class="like" id="post-like-<%= resource.id %>">
+      <%= render 'likes/form', likeable: resource %>
+    </div>
+    <ul class="comment-share-meta">
+    <li>
+      <button class="post-comment">
+        <%= link_to resource do %>
+          <i class="bi bi-chat-bubble" id="post-comment-<%= resource.id %>"></i>
+          <span><%= resource.comments_count %></span>
+        <% end %>
+      </button>
+    </li>
+    <li>
+      <button class="post-share">
+        <i class="bi bi-share"></i>
+        <span>07</span>
+      </button>
+    </li>
+  </ul>
+<% end %>

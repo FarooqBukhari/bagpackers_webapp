@@ -1,0 +1,287 @@
+<main>
+  <div class="main-wrapper">
+
+  </div>
+</main>
+
+<div id="page-contents">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <aside class="widget-area profile-sidebar">
+          <%= render 'shared/user_info' , user:current_user %>
+          <%= render 'shared/links' , user:current_user%>
+        </aside>
+      </div>
+
+      <div class="col-md-6 col-sm-12" id="post-div">
+        <div class="card">
+          <div class="post-title d-flex align-items-center" id="post-<%= @post.id %>">
+            <div class="profile-thumb">
+              <a href="#">
+                <figure class="profile-thumb-middle">
+                  <% if @post.user.profile_picture.attached? %>
+                    <%= image_tag url_for(@post.user.profile_picture)%>
+                  <% else %>
+                    <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                  <% end %>
+                </figure>
+              </a>
+            </div>
+            <div class="posted-author">
+              <h6 class="author"><a href="<%= user_path @post.user %>"><%= @post.user.name %></a></h6>
+              <span class="post-time"><%= time_ago_in_words @post.created_at %></span>
+            </div>
+            <div class="post-settings-bar">
+              <% if belongs_to_user?(@post) %>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="post-settings arrow-shape">
+                  <ul>
+                    <li><button><%= link_to edit_post_path(@post) do %>edit post<% end %></button></li>
+                    <li><button><%= link_to post_path(@post), method: :delete, remote: true do %>delete post<% end %></button></li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="post-content">
+            <p class="post-desc">
+              <%= @post.content %>
+            </p>
+            <div class="post-thumb-gallery img-gallery">
+              <div class="row no-gutters">
+                <div class="col-12">
+                  <figure class="post-thumb">
+                    <a class="gallery-selector" href="#">
+                      <% if @post.attachment.attached? %>
+                        <% if @post.attachment.attached? %>
+                          <% if @post.attachment.content_type.to_s.include? "image"  %>
+                            <img src="<%= url_for @post.attachment %>" alt="post-image" class="img-responsive post-image" id="post-image-<%= @post.id %>" />
+                          <% end %>
+                          <% if @post.attachment.content_type.to_s.include? "video" %>
+                            <%= video_tag(url_for(@post.attachment), controls: "true") %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="post-meta">
+              <div class="row" style="width: 100%;!important">
+                <div class="col-lg-12">
+                  <h4>Comments</h4>
+                  <hr>
+                  <%= render 'comments/form', commentable: @post %>
+                  <br>
+                  <div class="comments" id="post-comments-<%= @post.id %>">
+                    <%= render(@comments) || render('shared/no_resource', resources: 'Comments') %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 order-3">
+        <aside class="widget-area">
+          <!-- widget single item start -->
+          <div class="card widget-item">
+            <h4 class="widget-title">Recent Notifications</h4>
+            <div class="widget-body">
+              <ul class="like-page-list-wrapper">
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-9.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Any one can join with us if you want</a></h3>
+                    <p class="list-subtitle">5 min ago</p>
+                  </div>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-35.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Any one can join with us if you want</a></h3>
+                    <p class="list-subtitle">10 min ago</p>
+                  </div>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-15.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Any one can join with us if you want</a></h3>
+                    <p class="list-subtitle">18 min ago</p>
+                  </div>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-6.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Any one can join with us if you want</a></h3>
+                    <p class="list-subtitle">25 min ago</p>
+                  </div>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-34.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Any one can join with us if you want</a></h3>
+                    <p class="list-subtitle">39 min ago</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- widget single item end -->
+
+          <!-- widget single item start -->
+          <div class="card widget-item">
+            <h4 class="widget-title">Advertizement</h4>
+            <div class="widget-body">
+              <div class="add-thumb">
+                <a href="#">
+                  <img src="assets/images/banner/advertise.jpg" alt="advertisement">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- widget single item end -->
+
+          <!-- widget single item start -->
+          <div class="card widget-item">
+            <h4 class="widget-title">Friends Zone</h4>
+            <div class="widget-body">
+              <ul class="like-page-list-wrapper">
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-10.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">arfim bolt</a></h3>
+                    <p class="list-subtitle"><a href="#">10 mutual</a></p>
+                  </div>
+                  <button class="like-button">
+                    <img class="heart" src="assets/images/icons/heart.png" alt="">
+                    <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
+                  </button>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-2.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">marry wither</a></h3>
+                    <p class="list-subtitle"><a href="#">02 mutual</a></p>
+                  </div>
+                  <button class="like-button active">
+                    <img class="heart" src="assets/images/icons/heart.png" alt="">
+                    <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
+                  </button>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-5.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Rolin Theitar</a></h3>
+                    <p class="list-subtitle"><a href="#">drama</a></p>
+                  </div>
+                  <button class="like-button">
+                    <img class="heart" src="assets/images/icons/heart.png" alt="">
+                    <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
+                  </button>
+                </li>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="assets/images/profile/profile-small-14.jpg" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="#">Active Mind</a></h3>
+                    <p class="list-subtitle"><a href="#">fitness</a></p>
+                  </div>
+                  <button class="like-button">
+                    <img class="heart" src="assets/images/icons/heart.png" alt="">
+                    <img class="heart-color" src="assets/images/icons/heart-color.png" alt="">
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- widget single item end -->
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

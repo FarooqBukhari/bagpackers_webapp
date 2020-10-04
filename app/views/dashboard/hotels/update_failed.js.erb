@@ -1,0 +1,15 @@
+$("#tour_details_box").innerText = "";
+
+<% if @hotel.errors.any? %>
+<% @hotel.errors.full_messages.each do |message| %>
+$("#tour_details_box").append("<p> <%= message %> </p>");
+<% end %>
+$("#tour_details_box").animate({
+    scrollTop: $("#tour_details_box").offset().top
+}, 2000);
+
+
+$('html, body').animate({
+    scrollTop: $("#tour_details_box").offset().top
+}, 1000);
+<% end %>

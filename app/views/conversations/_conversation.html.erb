@@ -1,0 +1,21 @@
+<li>
+<div class="detailBox" data-conversation-id="<%= conversation.id %>" style="background-color: white">
+  <div class="titleBox">
+    <%= link_to  conversation.recipient.name, conversation.opposed_user(user.id), class: 'toggle-window' %>
+    <%= link_to "x", close_conversation_path(conversation), class: "close", remote: true, method: :post %>
+  </div>
+  <div class="panel-body" style="display: none;">
+    <div class="actionBox messages-list chat-container">
+    <ul class="commentList">
+      <%= render 'conversations/conversation_content', messages: conversation.messages, user: user %>
+    </ul>
+    <form class="new_message ">
+      <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
+      <input name="user_id" type="hidden" value="<%= user.id %>">
+      <textarea name="body" class="form-control"></textarea>
+      <input type="submit" class="btn btn-default" value="Send">
+    </form>
+  </div>
+  </div>
+</div>
+</li>

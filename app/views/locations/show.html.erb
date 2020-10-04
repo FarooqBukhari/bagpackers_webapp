@@ -1,0 +1,172 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2><%= @location.name %></h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href=<%=locations_path	%>>Location</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Location Detail</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<!-- hotel detail -->
+<section class="main-content detail pad-bottom-80">
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @location.name %></h2>
+              <div class="deal-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <% @location.images.each do |img| %>
+                  <li data-target="#in_th_030" data-slide-to="0" class="active">
+                    <%= image_tag img,  alt:'' %>
+                  </li>
+                <% end %>
+
+              </ol> <!-- /Indicators -->
+              <!-- Wrapper For Slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First Slide -->
+                <% @location.images.each do |img| %>
+                  <div class="item active">
+                    <!-- Slide Background -->
+                    <%= image_tag img,  alt:'' %>
+                  </div>
+                <% end %>
+                <!-- End of Slide -->
+              </div> <!-- End of Wrapper For Slides -->
+            </div> <!-- End Paradise Slider -->
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Description</h3>
+            </div>
+            <div class="description-content">
+              <p><%= @location.description.html_safe %></p>
+            </div>
+          </div>
+
+
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Tourism Types</h3>
+            </div>
+            <div class="description-content">
+              <% @location.tourism_types.each do |t| %>
+                <p> <%= t.name %></p>
+              <% end %>
+            </div>
+          </div>
+
+
+          <div class="location-map detail-box">
+            <div class="detail-title">
+              <h3><%= @location.name %> Map</h3>
+            </div>
+            <div class="map-frame">
+              <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCgSulG2ADv-xNvPK86aJqAaBPZchBEiQk
+                &q=<%= @location.name %>" allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+
+          <div class="location-map detail-box">
+            <div class="detail-title">
+              <h3><%= @location.name %> Weather</h3>
+            </div>
+            <div class="map-frame">
+            <div class="video-wrapper"><h2 class="title">Checkout the weather before you plan !</h2>
+              <script type='application/javascript' src='https://darksky.net/widget/default/<%= @lat %>,<%= @long %>/uk12/en.js?width=100%&height=350&title=<%= @location.name %>&textColor=000000&bgColor=000000&transparency=true&skyColor=undefined&fontFamily=Default&customFont=&units=uk&htColor=000000&ltColor=000000&displaySum=yes&displayHeader=yes'></script>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item sidebar-item-dark">
+            <div class="detail-title">
+              <h3>Book Your Custom Tour</h3>
+            </div>
+            <form>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="comment-btn">
+                    <a href="<%= new_custom_trip_path %>" class="btn-blue btn-red">Book Custom Trip To <%=@location.name %></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Tours in <%= @location.name %></h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% @tours.each do |tour| %>
+                <%= render "tours/related_tour", tour: tour %>
+              <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Hotels in <%= @location.name %></h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% @hotels.each do |hotel| %>
+                <%= render "hotels/related_hotels", hotel: hotel %>
+              <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Locations in <%= @location.name %></h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% if @location.sub_locations.exists?  %>
+                <% @location.sub_locations.each do |location| %>
+                  <%= render 'locations/sub_location', location: location, col: "4" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>If You have any questions just contact us we are happy to help.</p>
+              <p><i class="flaticon-phone-call"></i> (042)-345-6789</p>
+              <p><i class="flaticon-mail"></i> info@BagPackers.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+          <!-- Hotel Detail Ends -->

@@ -1,0 +1,52 @@
+<%= form_for([@tour, @tour_review],local: true, remote: true) do |form| %>
+  <% if tour_review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tour_review.errors.count, "error") %> prohibited this tour_review from being saved:</h2>
+
+      <ul>
+        <% tour_review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="textarea form-group col-xs-12">
+<%= form.label :review_text, class:"label-login"  %>
+<%= form.text_area :review_text, class:"form-control label-input" %>
+</div>
+<div class="form-group col-xs-12" style="display: none">
+<%= form.label :rating, class:"label-login"  %>
+<%= form.number_field :rating, class:"form-control label-input" %>
+</div>
+<div class="form-group col-xs-12">
+  <div class='rating-widget'>
+
+    <!-- Rating Stars Box -->
+    <div class='rating-stars text-center'>
+      <ul id='stars'>
+        <li class='star' title='Poor' data-value='1'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star' title='Fair' data-value='2'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star' title='Good' data-value='3'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star' title='Excellent' data-value='4'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star' title='WOW!!!' data-value='5'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12">
+<div class="comment-btn text-center">
+  <%= form.submit class: "btn btn-red" %>
+</div>
+</div>
+<% end %>

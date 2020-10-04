@@ -1,0 +1,15 @@
+<%# if resources.next_page %>
+//  $(".pagination").replaceWith("<%= j js_will_paginate(resources) %>");
+//  $(".pagination").hide();
+<%# else %>
+//  $(window).off('scroll');
+//  $("#endless-scroll").remove();
+<%# end %>
+
+//$(function() {
+//    $(".pagination a").live("click", function() {
+//        $(".pagination").html("Page is loading...");
+//        $.getScript(this.href);
+//        return false;
+//    });
+//});

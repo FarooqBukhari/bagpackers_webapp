@@ -1,0 +1,15 @@
+$("#error_explanation").innerText = "";
+<% if @hotel.errors.any? %>
+<% @hotel.errors.full_messages.each do |message| %>
+$("#error_explanation").append("<p> <%= message %> </p>");
+<% end %>
+$("#error_explanation").animate({
+    scrollTop: $("#error_explanation").offset().top
+}, 2000);
+
+
+$('html, body').animate({
+    scrollTop: $("#error_explanation").offset().top
+}, 1000);
+<% end %>
+

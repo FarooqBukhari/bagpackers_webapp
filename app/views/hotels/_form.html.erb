@@ -1,0 +1,183 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Add A New Hotel</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<% root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%=feed_path %>">Feed</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Add Hotel</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="booking">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="booking-form booking-outer">
+          <%= form_with(model: hotel, local: true) do |form| %>
+            <% if hotel.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+                  <ul>
+                    <% hotel.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+            <div class="row">
+              <div class="form-group col-xs-6">
+                <%= form.label :name, style: 'text-transform: capitalize',class:"label-login" %>
+                <%= form.text_field :name,placeholder:"Hotel Name", style: 'text-transform: capitalize', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :number, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.number_field :number,placeholder:"Hotel Contact Number", style: 'text-transform: capitalize; ', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6 ">
+                <%= form.label :email, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.email_field :email,placeholder:"Hotel Email", class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :address, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.text_field :address,placeholder:"Hotel Address", style: 'text-transform: capitalize;', class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :website_url, style: 'text-transform: capitalize; ',class:"label-login" %>
+                <%= form.text_field :website_url,placeholder:"Website URL (Optional)", class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <label>Location</label>
+                <%=  form.collection_select(:locations_id, Location.all, :id, :name, prompt: true, class:"form-control required", required:"true" )%>
+              </div>
+              <div class="textarea col-xs-12">
+                <%= form.label :info,style: 'text-transform: capitalize;' , class:"label-login"  %>
+                <%= form.cktext_area :info, class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :proof_of_ownership,  style: 'text-transform: capitalize;',class:"label-login"  %>
+                <%= form.file_field :proof_of_ownership, class:"form-control" %>
+              </div>
+              <div class="form-group col-xs-6">
+                <%= form.label :hotel_cover_photos,style: 'text-transform: capitalize;', class:"label-login"  %>
+                <%= form.file_field :hotel_cover_photos, class:"form-control", multiple:"true" %>
+              </div>
+
+              <label class="label-login">Hotel Facilities</label>
+              <div class="form-control col-xs-12">
+                <ul class="checkbox-grid">
+                  <% if @keys.nil? || @keys.empty? %>
+                    <% @hotel_facilities_name.each do |facility| %>
+                      <li>
+                        <label class="checkbox-inline">
+                          <%= check_box_tag("facilities[]" , facility.id) %>
+                          <%= facility.name %>
+                        </label>
+                      </li>
+                    <% end %>
+                  <% else %>
+                    <% @hotel_facilities_name.each do |facility| %>
+                        <li>
+                          <label class="checkbox-inline">
+                            <% if @hotel_facilities[@keys[(facility.id)+1]] %>
+                              <%= check_box_tag("facilities[]" , facility.id , checked: true) %>
+                            <% else %>
+                              <%= check_box_tag("facilities[]" , facility.id) %>
+                            <% end %>
+                            <%= facility.name %>
+                          </label>
+                        </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="comment-btn">
+                  <a href="javascript:$('form').submit()" class="btn-blue btn-red">Add Hotel</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>Popular Packages</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider1.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider2.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Bahamas Royal Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+              <div class="sidebar-package">
+                <div class="sidebar-package-image">
+                  <img src="<%= image_path 'detailslider3.jpg' %>" alt="Image">
+                </div>
+                <div class="destination-content sidebar-package-content">
+                  <h4><a href="tour-detail.html">Royal Caribbean Cruises</a></h4>
+                  <div class="deal-rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-star-o"></span>
+                  </div>
+                  <p><i class="flaticon-time"></i> 5 days starts from <span class="bold">$659</span> </p>
+                  <a href="#" class="btn-blue btn-red">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sedpr do eiusmod tempor incididunt ut.</p>
+              <p><i class="flaticon-phone-call"></i> (012)-345-6789</p>
+              <p><i class="flaticon-mail"></i> tourntravel@testmail.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

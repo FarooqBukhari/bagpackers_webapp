@@ -1,0 +1,37 @@
+<section class="login" style=" background-image: url('<%= asset_path '1KhapluPalace.jpeg' %>') ; background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover; margin: 0 auto!important;  text-align: center!important;" >
+  <div class="container "  style="   background-color:#ffffff;  margin-top:-60px;  width: fit-content !important; text-align: center!important;">
+    <div class="row"  style="width: fit-content !important;">
+      <div  >
+        <div class="login-form" style=" text-align: center!important; margin: 0 auto!important;">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <div class="row">
+              <div >
+                <div class="form-title " style= "margin-bottom: 10px !important; text-align: center">
+                  <h2>Reset Your Password</h2>
+                  <p>We will email you a link to reset your account. The email may take up to 5 minutes.</p>
+                </div>
+                <%= render "devise/shared/error_messages", resource: resource %>
+              </div>
+              <div >
+                <label>Email</label>
+
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", type: "email" ,placeholder:"Enter Email "%>
+
+              </div>
+
+              <div >
+                <div class="comment-btn" style="text-align: center">
+                  <%= f.submit "Send me a reset link",type:'submit' ,class:"btn-blue btn-red" %>
+                </div>
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

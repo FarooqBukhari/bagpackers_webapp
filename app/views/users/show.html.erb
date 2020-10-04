@@ -1,0 +1,78 @@
+<main>
+  <div class="main-wrapper">
+    <%= render 'profile_view' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 order-2 order-lg-1">
+          <aside class="widget-area profile-sidebar">
+            <!-- widget single item start -->
+            <div class="card widget-item">
+              <h4 class="widget-title"><%= @user.name %></h4>
+              <div class="widget-body">
+                <div class="about-author">
+                  <p><%= @user.about %></p>
+                  <ul class="author-into-list">
+                    <li><a href="#"><i class="bi bi-office-bag"></i><%= @user.slug %></a></li>
+                    <li><a href="#"><i class="bi bi-home"></i><%= @user.sex %></a></li>
+                    <li><a href="#"><i class="bi bi-location-pointer"></i><%= @user.location %></a></li>
+                    <li><a href="#"><i class="bi bi-heart-beat"></i><%= @user.dob %></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- widget single item end -->
+            <%= render 'shared/links' , user:current_user%>
+
+          </aside>
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2" id="post-div">
+          <% if current_user == @user %>
+            <!-- share box start -->
+            <%= render 'posts/form' %>
+            <!-- share box end -->
+          <% end %>
+          <% if @activities.empty? %>
+            <div class="card">
+              <%= render('shared/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@activities, layout: '/shared/activity') %>
+          <% end %>
+        </div>
+
+        <div class="col-lg-3 order-3">
+          <aside class="widget-area">
+            <!-- widget single item start -->
+            <div class="card widget-item">
+              <h4 class="widget-title">Blogs and News</h4>
+              <div class="widget-body">
+                <ul class="like-page-list-wrapper">
+                  <% @blogs.each do |blog| %>
+                    <li class="unorder-list">
+                      <!-- profile picture end -->
+                      <div class="profile-thumb">
+                        <a href="#">
+                          <figure class="profile-thumb-small">
+                            <img src="<%= url_for blog.image %>" alt="profile picture">
+                          </figure>
+                        </a>
+                      </div>
+                      <!-- profile picture end -->
+                      <div class="unorder-list-info">
+                        <h3 class="list-title"><a href="<%= blog_path(blog.id) %>"><%= blog.title %></a></h3>
+                        <p class="list-subtitle"><%= time_ago_in_words blog.created_at %></p>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <!-- widget single item end -->
+
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

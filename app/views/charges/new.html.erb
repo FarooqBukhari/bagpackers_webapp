@@ -1,0 +1,144 @@
+<%#= form_tag charges_path(@booking.id) do %>
+<!--  <article>-->
+    <%# if flash[:error].present? %>
+<!--      <div id="error_explanation">-->
+<!--        <p><%#= flash[:error] %></p>-->
+<!--      </div>-->
+    <%# end %>
+<!--  </article>-->
+<!--<div class="container">-->
+<!--  <h3 style="text-align: center"> Checkout </h3>-->
+<!--  <hr>-->
+<!--  <table id="cart" class="table table-hover table-condensed">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th style="width:50%">Tour</th>-->
+<!--      <th style="width:10%">Price</th>-->
+<!--      <th style="width:8%">Seats</th>-->
+<!--      <th style="width:22%" class="text-center">Subtotal</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--      <td data-th="Product">-->
+<!--        <div class="row">-->
+<!--          <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>-->
+<!--          <div class="col-sm-10">-->
+<!--            <h4 class="nomargin"> <%#= @booking.tour.title  %> </h4>-->
+<!--            <div>-->
+<!--              <p>Name : <%#= @booking.user.name  %></p>-->
+<!--              <p>Email : <%#= @booking.user.email  %></p>-->
+<!--              <p>Phone : <%#= @booking.user.phone_number  %></p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <td data-th="Price"><%#= @booking.tour.price %></td>-->
+<!--      <td data-th="Quantity">-->
+        <%#= @booking.no_of_seats %>
+<!--      </td>-->
+<!--      <td data-th="Subtotal" class="text-center"><%#= @booking.payment_amount %> RS</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--    <tfoot>-->
+<!--    <tr class="visible-xs">-->
+<!--      <td class="text-center"><strong>Total 1.99</strong></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>-->
+        <%#= link_to 'Delete', tour_booking_path(@booking.tour,@booking), class:"btn btn-danger", method: :delete %>
+<!--      </td>-->
+<!--      <td colspan="2" class="hidden-xs"></td>-->
+<!--      <td class="hidden-xs text-center"><strong><%#= @booking.payment_amount %> RS</strong></td>-->
+<!--      <td>-->
+<!--        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"-->
+<!--                data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"-->
+<!--                data-description="Pay for Trip"-->
+<!--                data-amount="<%#= @booking.payment_amount * 100 %>"-->
+<!--                data-email="<%#= current_user.email %>"-->
+<!--                data-currency="pkr"-->
+<!--                data-locale="auto">-->
+<!--        </script>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tfoot>-->
+<!--  </table>-->
+<!--</div>-->
+
+<%# end %>
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Booking</h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= tours_path %>">Tours</a></li>
+          <li class="breadcrumb-item"><a href="<%= tour_path(@booking.tour.id) %>"><%=@booking.tour.title%></a></li>
+          <li class="breadcrumb-item active" aria-current="page">Booking</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+
+<div class="row shopping-cart" style="margin-top: 100px;">
+
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Seats</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product">
+    <div class="product-image">
+      <%= image_tag url_for(@booking.tour.trip_images[0]), alt: 'img'%>
+    </div>
+    <div class="product-details">
+      <div class="product-title"><%= @booking.tour.title  %></div>
+      <p class="product-description">Date: <%= @booking.tour.date%> <br>  Number of Days: <%= @booking.tour.duration%></p>
+    </div>
+    <div class="product-price"><%= @booking.tour.price  %></div>
+    <div class="product-quantity">
+      <%= @booking.no_of_seats  %>
+    </div>
+
+    <div class="product-line-price" style="margin-left: 127px ;"><%= @booking.payment_amount %></div>
+  </div>
+
+
+  <div class="totals">
+
+<!--    <div class="totals-item">-->
+<!--      <label>Tax (5%)</label>-->
+<!--      <div class="totals-value" id="cart-tax">3.60</div>-->
+<!--    </div>-->
+<!--    <div class="totals-item">-->
+<!--      <label>Shipping</label>-->
+<!--      <div class="totals-value" id="cart-shipping">15.00</div>-->
+<!--    </div>-->
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total"><%= @booking.payment_amount %></div>
+    </div>
+  </div>
+
+<!--  <button class="checkout" style="margin-bottom: 20px">Checkout</button>-->
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Checkout"
+          data-amount="<%= @booking.payment_amount * 100 %>"
+          data-email="<%= current_user.email %>"
+          data-currency="pkr"
+          data-locale="auto">
+      document.getElementsByClassName("stripe_checkout_app").style.float='right';
+  </script>
+
+
+
+</div>

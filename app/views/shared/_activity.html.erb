@@ -1,0 +1,67 @@
+<% if activity.trackable %>
+  <% if activity.trackable_type == 'Post' && activity.key == 'post.create' %>
+   <% post = Post.find activity.trackable_id %>
+    <% user = User.find post.user_id %>
+      <div id="activity-<%= activity.id %>" class="card">
+        <div class="post-title d-flex align-items-center" id="post-<%= post.id %>">
+          <div class="profile-thumb">
+            <a href="#">
+              <figure class="profile-thumb-middle">
+                <% if user.profile_picture.attached? %>
+                  <%= image_tag url_for(user.profile_picture)%>
+                <% else %>
+                  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+                <% end %>
+              </figure>
+            </a>
+          </div>
+          <div class="posted-author">
+            <h6 class="author"><a href="<%= user_path user %>"><%= user.name %></a></h6>
+            <span class="post-time"><%= time_ago_in_words post.created_at %></span>
+          </div>
+          <div class="post-settings-bar">
+            <% if belongs_to_user?(post) %>
+              <span></span>
+              <span></span>
+              <span></span>
+              <div class="post-settings arrow-shape">
+                <ul>
+<!--                  <li><button><%#= link_to edit_post_path(post) do %>edit post<%# end %></button></li>-->
+                  <li><button><%= link_to post_path(post), method: :delete, remote: true do %>delete post<% end %></button></li>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="post-content">
+          <p class="post-desc">
+            <%= post.content %>
+          </p>
+          <div class="post-thumb-gallery img-gallery">
+            <div class="row no-gutters">
+              <div class="col-12">
+                <figure class="post-thumb">
+                  <a class="gallery-selector" href="#">
+                    <% if post.attachment.attached? %>
+                      <% if post.attachment.attached? %>
+                        <% if post.attachment.content_type.to_s.include? "image"  %>
+                          <img src="<%= url_for post.attachment %>" alt="post-image" class="img-responsive post-image" id="post-image-<%= post.id %>" />
+                        <% end %>
+                        <% if post.attachment.content_type.to_s.include? "video" %>
+                          <%= video_tag(url_for(post.attachment), controls: "true") %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </a>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="post-meta">
+            <%= render 'shared/actions', resource: post %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+<% end %>
+

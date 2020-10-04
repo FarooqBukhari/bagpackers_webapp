@@ -1,0 +1,249 @@
+<!-- Breadcrumb -->
+
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2><%= @tour.title %></h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= tours_path %>">Tours</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @tour.title %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<section class="main-content detail">
+  <div class="container">
+    <%= render 'welcome/messages' %>
+    <div class="row">
+      <div id="content" class="col-md-8">
+        <div class="detail-content content-wrapper">
+          <div class="detail-info">
+            <div class="detail-info-content clearfix">
+              <h2><%= @tour.title %></h2>
+              <p class="detail-info-price"><span class="bold"><%= @tour.price %>PKR</span></p>
+              <div class="deal-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star-o"></span>
+                <span class="fa fa-star-o"></span>
+              </div>
+            </div>
+          </div>
+          <div class="gallery detail-box">
+            <!-- Paradise Slider -->
+            <div id="in_th_030" class="carousel slide in_th_brdr_img_030 thumb_scroll_x swipe_x ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="4000" data-duration="2000">
+              <%= render 'hotel_rooms/roomgallery', room_pictures:@tour.trip_images %>
+            </div> <!-- End Paradise Slider -->
+          </div>
+          <div class="description detail-box">
+            <div class="detail-title">
+              <h3>Description</h3>
+            </div>
+            <div class="description-content">
+              <p> <%= @tour.description.html_safe %> </p>
+              <table>
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="title">Source Location</td>
+                  <td><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @tour.source_location.name %> </td>
+                </tr>
+                <tr>
+                  <td class="title">Destination Location</td>
+                  <td><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @tour.location.name %> </td>
+                </tr>
+                <tr>
+                  <td class="title">Departure Time</td>
+                  <td><i class="fa fa-clock-o" aria-hidden="true"></i> <%= @tour.date %> </td>
+                </tr>
+                <tr>
+                  <td class="title">Maximum travellers</td>
+                  <td><i class="fa fa-user-o" aria-hidden="true"></i> <%= @tour.seats %></td>
+                </tr>
+                <tr>
+                  <td class="title">Duration</td>
+                  <td><i class="fa fa-file-audio-o" aria-hidden="true"></i> <%= @tour.duration %></td>
+                </tr>
+                <tr>
+                  <td class="title">Company Name</td>
+                  <td><i class="fa fa-file-audio-o" aria-hidden="true"></i> <a href="<%= trip_organizer_path( @tour.trip_organizer) %>"> <%= @tour.trip_organizer.company_name %> </a> </td>
+                </tr>
+                <tr>
+                  <td class="title">Tourism Type</td>
+                  <td><i class="fa fa-file-audio-o" aria-hidden="true"></i> <%= @tour.tourism_type.name %></td>
+                </tr>
+                <tr>
+                  <td class="title">Includes</td>
+                  <td>
+                    <ul>
+                      <li><i class="fa fa-check" aria-hidden="true"></i> <%= @tour.services_included.html_safe %></li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">Excludes</td>
+                  <td class="excludes">
+                    <ul>
+                      <li><i class="fa fa-times" aria-hidden="true"></i> <%= @tour.services_not_included.html_safe %></li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">Popular Places</td>
+                  <td>
+                    <ul>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> Eiffel Tower</li>
+                    </ul>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="location-map detail-box">
+            <div class="detail-title">
+              <h3>Location Map</h3>
+            </div>
+            <div class="map-frame">
+              <iframe style="border:0"
+                src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCgSulG2ADv-xNvPK86aJqAaBPZchBEiQk&origin=<%= @tour.source_location.name %> &destination=<%= @tour.location.name %>&avoid=tolls|highways" allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <div class="detail-timeline detail-box">
+            <div class="detail-title">
+              <h3>Tour Timeline</h3>
+            </div>
+            <div class="timeline-content">
+              <ul class="timeline">
+                <!-- Item 1 -->
+                <% @tour.tour_details.each_with_index do |tour_details,index| %>
+                <li>
+                  <div class="direction-r">
+                    <div class="day-wrapper">
+                      <span><%= index + 1 %></span>
+                    </div>
+                    <div class="flag-wrapper">
+                      <span class="flag"> <%= tour_details.location %> </span>
+                    </div>
+                    <div class="desc">
+                      <p><%= tour_details.description %></p>
+                    </div>
+                  </div>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="top-attractions detail-box">
+            <div class="detail-title">
+              <h3>Hotels and Availabilities</h3>
+            </div>
+            <div class="top-attraction-content">
+              <% @hotels.each do |hotel| %>
+                <div class="att-item clearfix">
+                  <div class="att-image">
+                    <%= image_tag url_for(hotel.hotel_cover_photos[0]) %>
+                  </div>
+                  <div class="att-content">
+                    <div class="att-content-left">
+                      <h4><%= hotel.name %></h4>
+                      <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> Free Wifi</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> Free Parking</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> Swimming Pool</li>
+                      </ul>
+                    </div>
+                    <div class="att-content-right">
+                      <p>Starting from <span class="bold">Rs. 1500</span></p>
+                      <p>1 night / 3 person</p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <% if @tour_reviews.any? %>
+          <div class="comments detail-box">
+            <div class="detail-title">
+              <h3>Comments</h3>
+            </div>
+            <div class="comment-content" id="review_box">
+
+            <% @tour_reviews.each do |review| %>
+              <%= render "tour_reviews/tour_review", review: review  %>
+            <% end %>
+              <div id="tour_review_paginate">
+              <%= paginate @tour_reviews %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% if !( @trip_organizer.user == current_user or !(@tour.bookings.exists?(user_id: current_user)) or @tour.tour_reviews.exists?(user_id: current_user) ) %>
+
+            <div class="comments-form detail-box">
+              <div class="detail-title">
+                <h3>Add Your Comment</h3>
+              </div>
+              <div class="row" >
+                <%= render 'tour_reviews/form', tour_review: @tour_review %>
+              </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-4">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <% if !( @trip_organizer.user == current_user ) %>
+          <div class="sidebar-item sidebar-item-dark">
+            <div class="detail-title">
+              <h3>Book this tour</h3>
+            </div>
+            <%= form_with url: tour_bookings_path(tour_id: @tour.id),  local: true, class:"content-widget" do |form| %>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <%= form.text_field :no_of_seats, class:"form-control", placeholder: "Seats", min:"0", type:"number", required:"true", onkeypress:"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" %>
+                </div>
+                <div class="col-xs-12">
+                  <div class="comment-btn">
+                    <%= form.submit "Book Now", class: "btn-blue btn-red" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% end %>
+
+          <div class="sidebar-item">
+            <div class="detail-title">
+              <h3>More Tours</h3>
+            </div>
+            <div class="sidebar-content sidebar-slider">
+              <% @tours.each do |tour| %>
+                <%= render "tours/related_tour", tour: tour %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="sidebar-item sidebar-helpline">
+            <div class="sidebar-helpline-content">
+              <h3>Any Questions?</h3>
+              <p>Checkout The Organizer's Profile</p>
+              <p><i class="flaticon-mail"></i> <a href="<%= trip_organizer_path @trip_organizer %>" style="color: white"> <%= @trip_organizer.company_name %> </a></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

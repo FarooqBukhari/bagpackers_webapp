@@ -1,0 +1,26 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info hotelmanagers %>
+  </div>
+  <% hotelmanagers.each do |manager| %>
+    <div class="col-sm-4">
+      <div class="package-item">
+        <div class="package-image" style="width: 100%; height: 300px;">
+          <img src=" <%= url_for(manager.company_logo)%>" style="height: 100%;"alt="Image">
+        </div>
+        <div class="package-price" style="margin-top: 20px;" >
+          <div class="deal-rating" >
+            <%= render 'shared/rating', stars: manager.get_rating %>
+          </div>
+        </div>
+        <!--      <h3 style="margin-bottom:20px; height: 10px !important;"><%#=manager.company_name%></h3>-->
+        <!--        <p class="package-days"><i class="flaticon-time"></i> <%#=recommended_tour.duration%> Days</p>-->
+        <div class="package-info">
+          <h3 style="margin-bottom: 30px"><%=manager.company_name%></h3>
+          <a style="margin-bottom: 30px" href="<%= hotel_manager_path(manager)%>" class="btn-blue btn-red">View more details</a>
+        </div>
+
+      </div>
+    </div>
+  <%end %>
+</div>

@@ -1,0 +1,27 @@
+  <% user = User.find post.user_id %>
+  <div class="post-content" id="post-<%= post.id %>">
+    <% if post.attachment.attached? %>
+      <img src="<%= url_for post.attachment %>" alt="post-image" class="img-responsive post-image" id="post-image-<%= post.id %>" />
+      <% end %>
+    <div class="post-container">
+      <% if user.profile_picture.attached? %>
+        <%= image_tag url_for(user.profile_picture), class:"profile-photo-md pull-left" %>
+      <% else %>
+        <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+      <% end %>
+      <div class="post-detail">
+        <div class="user-info">
+          <h5><a href="<%= user_path user %>" class="profile-link"> <%= user.name %> </a></h5>
+          <p class="text-muted"> <%= time_ago_in_words post.created_at %> </p>
+        </div>
+        <div class="reaction">
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-text">
+          <p> <%= post.content %> <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+        </div>
+        <div class="line-divider"></div>
+      </div>
+    </div>
+  </div>
+

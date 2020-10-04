@@ -1,0 +1,14 @@
+<% hotel.hotel_rooms.each do |hotel_room| %>
+  <% if hotel_room != current_room %>
+    <div class="sidebar-package">
+      <div class="sidebar-package-image">
+        <img src="<%= rails_blob_url(hotel_room.hotel_room_pictures[0]) %>" alt="Images">
+      </div>
+      <div class="destination-content sidebar-package-content">
+        <h4><a href="hotel-detail.html"><%= hotel_room.room_type %></a></h4>
+        <p><i class="flaticon-time"></i> Starting from <span class="bold">Pkr<%= hotel_room.price %></span> </p>
+        <a href="<%= hotel_hotel_room_path(hotel,hotel_room) %>" class=" btn-red">See More</a>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,8 @@
+//$('div[id^="activity-"]').remove();
+//$("html, body").animate({ scrollTop: 0 }, "slow");
+$("<%= j render_activities(@activities, layout: '/shared/activity') %>").insertBefore($("#endless-scroll"));
+$("#endless-scroll").html("<%= j js_will_paginate @activities %>");
+next_button = $('.pagination > .next_page');
+next_button.addClass("btn");
+$('.pagination').empty();
+$('.pagination').append(next_button);

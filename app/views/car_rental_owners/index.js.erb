@@ -1,0 +1,5 @@
+<% js = escape_javascript(
+  render(partial: 'car_rental_owners/owners', locals: { carrentalowners: @car_rental_owners })
+) %>
+$("#filterrific_results").html("<%= js %>");
+$(".pagination-content").html("<%= escape_javascript js_will_paginate @car_rental_owners %>");

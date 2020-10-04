@@ -1,0 +1,33 @@
+<% reviews.each do |review| %>
+  <% if review == reviews[0] %>
+    <div class="item active">
+  <% else %>
+    <div class="item">
+  <% end %>
+  <!-- First Slide -->
+    <!-- Text Layer -->
+    <div class="testimonial_095_slide">
+      <div class="testimonial-image">
+        <% if review.user.profile_picture.attached? %>
+          <img src="<%= url_for review.user.profile_picture %>" alt="Image">
+        <% else %>
+          <img src="<%= image_path "user_default" %>" alt="Image">
+        <% end %>
+      </div>
+      <div class="testi-heading text-center">
+        <h4 class="mar-top-10"><a href="#"><%= review.user.name %></a></h4>
+        <h5><a href="<%= users_path(review.user) %>"><%= review.user.slug %></a></h5>
+      </div>
+      <p><%= review.review_text %></p>
+      <div class="deal-rating">
+        <% review.rating.times do %>
+          <span class="fa fa-star checked"></span>
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <span class="fa fa-star-o"></span>
+        <% end %>
+      </div>
+    </div> <!-- /Text Layer -->
+  </div> <!-- /item -->
+  <!-- End of First Slide -->
+<% end %>

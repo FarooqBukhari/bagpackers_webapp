@@ -1,0 +1,51 @@
+<!-- share box start -->
+<div class="card card-small">
+  <div class="share-box-inner">
+    <!-- profile picture end -->
+    <div class="profile-thumb">
+        <figure class="profile-thumb-middle">
+          <% if current_user.profile_picture.attached? %>
+            <img src="<%= rails_blob_url(current_user.profile_picture) %>" alt="profile picture">
+          <% else %>
+            <%= image_tag "user_default.png" %>
+          <% end %>
+        </figure>
+    </div>
+    <!-- profile picture end -->
+
+    <!-- share content box start -->
+    <div class="share-content-box w-100">
+      <form class="share-text-box">
+        <textarea class="share-text-field" aria-disabled="true" placeholder="Say Something" data-toggle="modal" data-target="#textbox"></textarea>
+      </form>
+    </div>
+    <!-- share content box end -->
+    <!-- Modal start -->
+    <div class="modal fade" id="textbox" aria-labelledby="textbox">
+      <div class="modal-dialog">
+        <div class="modal-content" id="mentionable-data" data-content="<%= mentionable_user_path(current_user) %>">
+          <div class="modal-header">
+            <h5 class="modal-title">Share Your Experience</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="post-dialog">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <%= form_for(@post, remote: true, :html => {:multipart => true }) do |f| %>
+            <div class="modal-body custom-scroll">
+              <textarea name="post[content]" class="share-field-big custom-scroll" placeholder="Say Something"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="post-share-btn pull-left" data-dismiss="modal">cancel</button>
+              <button type="button" id="post_file_upload" class="post-share-btn"><i class="fa fa-image"></i>Upload Content</button>
+              <%= f.file_field :attachment, style:"display:none", id:"upload" %>
+              <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+              <button type="submit" class="post-share-btn">post</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- Modal end -->
+  </div>
+</div>
+<!-- share box end -->

@@ -1,0 +1,112 @@
+<!-- widget single item start -->
+<div class="card widget-item">
+  <div class="widget-body">
+    <ul class="like-page-list-wrapper">
+      <li class="unorder-list">
+        <div class="unorder-list-info">
+          <h3 class="list-title"><a href="<%= feed_path %>">My NewsFeed</a></h3>
+        </div>
+      </li>
+      <li class="unorder-list">
+        <div class="unorder-list-info">
+          <h3 class="list-title"><a href="<%= find_friends_path %>">Find Friends</a></h3>
+        </div>
+      </li>
+      <li class="unorder-list">
+        <div class="unorder-list-info">
+          <h3 class="list-title"><a href="<%= edit_user_path(current_user) %>">Edit Profile</a></h3>
+        </div>
+      </li>
+      <li class="unorder-list">
+        <div class="unorder-list-info">
+          <h3 class="list-title"><a href="<%= my_bookings_path(current_user) %>">View my Bookings</a></h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- widget single item end -->
+<!-- widget single item start -->
+<div class="card widget-item">
+  <h4 class="widget-title">Trip Organizer Dashboard</h4>
+  <div class="widget-body">
+    <ul class="like-page-list-wrapper">
+      <% if !current_user.is_trip_organizer? %>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-plane"></i>
+            <h3 class="list-title"><a href="<%= new_trip_organizer_path %>">Become a Trip Organizer</a></h3>
+          </div>
+        </li>
+      <% else %>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-plane"></i>
+            <h3 class="list-title"><a href="<%= new_tour_path %>">Add a Trip</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-eye"></i>
+            <h3 class="list-title"><a href="<%= trip_organizer_my_tours_path(current_user.trip_organizer.id) %>">View my Trips</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-edit"></i>
+            <h3 class="list-title"><a href="<%= edit_trip_organizer_path current_user.trip_organizer.id %>">Edit Profile</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-street-view"></i>
+            <h3 class="list-title"><a href="/trip_organizers/<%= current_user.trip_organizer.id %>">Show Profile</a></h3>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<!-- widget single item end -->
+<!-- widget single item start -->
+<div class="card widget-item">
+  <h4 class="widget-title">Hotel Manager Dashboard</h4>
+  <div class="widget-body">
+    <ul class="like-page-list-wrapper">
+      <% if !current_user.is_hotel_manager? %>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-plane"></i>
+            <h3 class="list-title"><a href="<%= new_hotel_manager_path %>">Become a Hotel Manager</a></h3>
+          </div>
+        </li>
+      <% else %>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-plane"></i>
+            <h3 class="list-title"><a href="<%= new_hotel_path %>">Add a Hotel</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-eye"></i>
+            <h3 class="list-title"><a href="<%= hotel_manager_my_hotels_path(current_user.hotel_manager.id) %>">View my Hotels</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-edit"></i>
+            <h3 class="list-title"><a href="<%= edit_hotel_manager_path current_user.hotel_manager.id %>">Edit Company Page</a></h3>
+          </div>
+        </li>
+        <li class="unorder-list">
+          <div class="unorder-list-info">
+            <i class="fa fa-street-view"></i>
+            <h3 class="list-title"><a href="/hotel_managers/<%= current_user.hotel_manager.id %>">Show Company Page</a></h3>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<!-- widget single item end -->

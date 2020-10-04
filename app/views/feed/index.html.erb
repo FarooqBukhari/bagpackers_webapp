@@ -1,0 +1,61 @@
+<main>
+  <div class="main-wrapper">
+
+  </div>
+</main>
+
+<div id="page-contents">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <aside class="widget-area profile-sidebar">
+          <%= render 'shared/user_info', user:current_user %>
+          <%= render 'shared/links' , user:current_user%>
+        </aside>
+      </div>
+
+      <div class="col-md-6 col-sm-12" id="post-div">
+        <%= render 'posts/form' %>
+          <% if @activities.empty? %>
+            <div class="well">
+              <%= render('shared/no_resource', resources: 'Activities') %>
+            </div>
+          <% else %>
+            <%= render_activities(@activities, layout: '/shared/activity') %>
+          <% end %>
+        <%= render 'shared/paginate', resources: @activities %>
+        </div>
+      <div class="col-lg-3 order-3">
+        <aside class="widget-area">
+          <!-- widget single item start -->
+          <div class="card widget-item">
+            <h4 class="widget-title">Blogs and News</h4>
+            <div class="widget-body">
+              <ul class="like-page-list-wrapper">
+                <% @blogs.each do |blog| %>
+                <li class="unorder-list">
+                  <!-- profile picture end -->
+                  <div class="profile-thumb">
+                    <a href="#">
+                      <figure class="profile-thumb-small">
+                        <img src="<%= url_for blog.image %>" alt="profile picture">
+                      </figure>
+                    </a>
+                  </div>
+                  <!-- profile picture end -->
+                  <div class="unorder-list-info">
+                    <h3 class="list-title"><a href="<%= blog_path(blog.id) %>"><%= blog.title %></a></h3>
+                    <p class="list-subtitle"><%= time_ago_in_words blog.created_at %></p>
+                  </div>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <!-- widget single item end -->
+
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

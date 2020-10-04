@@ -1,0 +1,23 @@
+<div class="col-lg-3 col-sm-6" id="user-<%= user.id %>">
+  <div class="friend-list-view">
+    <!-- profile picture end -->
+    <div class="profile-thumb">
+      <a href="<%= user_path(user) %>">
+        <figure class="profile-thumb-middle" style="height: 80px; width: 80px;">
+          <% if user.profile_picture.attached? %>
+          <img src="<%= url_for (user.profile_picture) %>" alt="profile picture">
+            <% else %>
+            <img src="<%= image_path "user_default" %>" alt="profile picture">
+          <% end %>
+        </figure>
+      </a>
+    </div>
+    <!-- profile picture end -->
+    <div class="posted-author follow">
+      <h4 class=""><%= user.name %></h4>
+      <div class="follow-btn" style="margin-top: 10px">
+        <%= render 'follows/form', user: user %>
+      </div>
+    </div>
+  </div>
+</div>

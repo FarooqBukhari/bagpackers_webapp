@@ -1,0 +1,220 @@
+<!-- Breadcrumb -->
+<section class="breadcrumb-outer text-center">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2><%= @blog.title %></h2>
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= blogs_path %>">Blog</a></li>
+          <li class="breadcrumb-item active" aria-current="page">This Blog</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="section-overlay"></div>
+</section>
+<!-- BreadCrumb Ends -->
+
+<!-- Detail -->
+<section class="item-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="item-wrapper">
+          <div class="cover-content">
+            <div class="author-detail">
+              <a href="#" class="tag tag-blue">#Travel</a>
+              <a href="#" class="tag tag-blue"><i class="fa fa-eye"></i> 2500</a>
+            </div>
+            <h2> <%= @blog.title %> </h2>
+            <div class="author-detail">
+              <span><a href="#"><i class="fa fa-clock-o"></i> Posted On : <%= @blog.created_at.strftime("%B %d, %Y") %></a></span>
+              <span class="blog-date-icon">
+                <% if @blog.locations_id? %>
+                  <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= @blog.location.name %> </p>
+                <% end %>
+            </span>
+            </div>
+          </div>
+          <div class="cover-image">
+            <img src="<%= url_for @blog.image %>" alt="Image">
+          </div>
+          <div class="item-detail">
+            <p class="articlepara"> <%= @blog.description.html_safe %> </p>
+          </div>
+
+          <blockquote>
+            <p>Was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <div class="sectionoverlay"></div>
+          </blockquote>
+
+
+          <div class="share-buttons">
+            <a href="#" class="btn-large btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
+            <p> <span>350</span> shares</p>
+            <a href="#" class="btn-large btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Share on Twitter</a>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar-sticky" class="col-md-3 col-sm-12">
+        <aside class="detail-sidebar sidebar-wrapper">
+          <div class="item-sidebar">
+            <div class="sidebar-item sidebar-item-dark">
+              <div class="detail-title">
+                <h3>Search</h3>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <input type="text" class="form-control" id="search1" placeholder="Enter the place you want to search">
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="comment-btn">
+                      <a href="#" class="btn-blue btn-red">Search Now</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="post-categories sidebar-item">
+              <div class="detail-title">
+                <h3>Categories</h3>
+              </div>
+              <ul>
+                <li><a href="#">Science</a></li>
+                <li><a href="#">Management</a></li>
+                <li><a href="#">Humanities</a></li>
+                <li><a href="#">Arts</a></li>
+                <li><a href="#">Biology</a></li>
+                <li><a href="#">Technology</a></li>
+              </ul>
+            </div>
+            <div class="recent-post clearfix sidebar-item">
+              <div class="detail-title">
+                <h3>Recent Posts</h3>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/profile1.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-blue">#News</a>
+                  <h4><a href="#">10 Tips you should follow</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent2.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-gold">#News</a>
+                  <h4><a href="#">Must have gadgets in life</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent1.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-green">#Health</a>
+                  <h4><a href="#">Selena, The talk of town</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+              <div class="recent-item">
+                <div class="recent-image">
+                  <img src="images/recent2.jpg" alt="Image">
+                </div>
+                <div class="recent-content">
+                  <a href="#" class="tag tag-blue">#News</a>
+                  <h4><a href="#">Why Zlatan left United?</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ad1 sidebar-item">
+              <div class="detail-title">
+                <h3>Popular Tags</h3>
+              </div>
+              <div class="popular-tag-content">
+                <ul>
+                  <li><a href="#">Flights</a></li>
+                  <li><a href="#">Trek</a></li>
+                  <li><a href="#">Travelling</a></li>
+                  <li><a href="#">Cruises</a></li>
+                  <li><a href="#">Sale</a></li>
+                  <li><a href="#">Hotels</a></li>
+                  <li><a href="#">Restaurants</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="popular-post sidebar-item">
+              <div class="detail-title">
+                <h3>Popular Posts</h3>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">01</span>
+                  <h4><a href="#">7 reasons Hollywood doesn’t make romantic comedies anymore</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">02</span>
+                  <h4><a href="#">Watch: the 3 best performances of the 2018 VMAs</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">03</span>
+                  <h4><a href="#">Why conservatives love to hate Alexandria?</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="popular-item">
+                <div class="popular-content">
+                  <span class="item-no">04</span>
+                  <h4><a href="#">10 Tips you should follow before eating street foods</a></h4>
+                  <div class="author-detail">
+                    <p><a href="#"><i class="fa fa-user-o"></i> John Doe</a></p>
+                    <p><i class="fa fa-clock-o"></i> 12 May</p>
+                    <p><a href="#"><i class="fa fa-comment-o"></i> 3 comments</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<div class="carousel-inner" role="listbox">
+  <% hotel.hotel_cover_photos.each do |img| %>
+    <!-- Slide -->
+    <% if img == hotel.hotel_cover_photos[0]%>
+      <div class="item active">
+    <% else %>
+      <div class="item">
+    <% end %>
+      <!-- Slide Background -->
+      <img src="<%= rails_blob_url(img) %>" alt="kenburns_061_01" />
+      <!-- Left Slide Text Layer -->
+      <div class="kenburns_061_slide" data-animation="animated fadeInUp">
+        <h2>Welcome To
+          <a href="#" class="btn-red btn-red"><%= hotel.name %></a>
+        </h2>
+      </div><!-- /Left Slide Text Layer -->
+    </div><!-- /item -->
+    <!-- End of Slide -->
+  <% end %>
+</div><!-- End of Wrapper For Slides -->
+<!-- Left Control -->
+<a class="left carousel-control" href="#kenburns_061" role="button" data-slide="prev">
+  <span>prev</span>
+  <span class="sr-only">Previous</span>
+</a>
+
+<!-- Right Control -->
+<a class="right carousel-control" href="#kenburns_061" role="button" data-slide="next">
+  <span>next</span>
+  <span class="sr-only">Next</span>
+</a>
+</div>

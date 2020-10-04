@@ -1,0 +1,5 @@
+<% if user.cover.attached? %>
+  <div class="cover" style="background-image: url(<%= url_for user.cover %>);"></div>
+<% else %>
+  <div class="cover" style="background-image: url(<%= asset_path ''  %>);"></div>
+<% end %>
