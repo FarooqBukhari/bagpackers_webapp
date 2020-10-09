@@ -37,7 +37,7 @@ class Dashboard::HotelsController < ApplicationController
           @hotel_facilities.hotels_id = @hotel.id
           if @hotel_facilities.save
             format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
-            format.json { render :show, status: :created, location: @hotel }
+            #format.json { render :show, status: :created, location: @hotel }
           else
             format.js { render :'dashboard/hotels/create' }
           end

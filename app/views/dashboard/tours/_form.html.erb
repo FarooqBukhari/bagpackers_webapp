@@ -18,7 +18,7 @@
 
           </div>
 
-          <%= form_for([:dashboard, tour], local: true, class: "custom-form", remote: true, authenticity_token: true ) do |form|  %>
+          <%= form_for([:dashboard, tour], class: "custom-form", remote: true, authenticity_token: true ) do |form|  %>
             <div class="row">
               <div class="form-group col-xs-6">
                 <%= form.label :title, style: 'text-transform: capitalize',class:"label-login" %>

@@ -81,7 +81,7 @@ class HotelsController < ApplicationController
       @hotel = Hotel.new(hotel_params)
       @hotel.hotel_manager_id = @user.hotel_manager.id
 
-      respond_to do |format|
+      #respond_to do |format|
         if @hotel.save
           facilitites_params = params[:facilities]
           index = 1
@@ -107,15 +107,15 @@ class HotelsController < ApplicationController
           @hotel = Hotel.last
           @hotel_facilities.hotels_id = @hotel.id
           if @hotel_facilities.save
-            format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
-            format.json { render :show, status: :created, location: @hotel }
+             redirect_to @hotel, notice: 'Hotel was successfully created.' 
+            #json { render :show, status: :created, location: @hotel }
           else
             @hotel_facilities_name = HotelFacilityName.all
-            format.html { render :new }
-            format.json { render json: @hotel.errors, status: :unprocessable_entity }
+            render :new 
+            #format.json { render json: @hotel.errors, status: :unprocessable_entity }
           end
         end
-      end
+      
     else
       redirect_to root_path
     end

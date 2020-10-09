@@ -22,7 +22,7 @@ class Dashboard::ToursController < ApplicationController
           @tour.tour_details << @tour_details
 
           format.html { redirect_to dashboard_tour_tour_details_path(tour_id: @tour.id), notice: 'Tour was successfully created.' }
-          format.json { render :show, status: :created, location: @tour }
+          #format.json { render :show, status: :created, location: @tour }
         else
           format.js { render :'dashboard/tours/create' }
         end

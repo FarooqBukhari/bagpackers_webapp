@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
+# def seed_image(file_name)
+#   File.open(File.join(Rails.root, "/app/assets/images/#{file_name}.jpg"))
+# end
+
+#location= Location.create ([{name: 'shogran', description: 'Best Place in pak', images: seed_image('insta1')}])
+
 tourism_types = TourismType.create([{name: 'Recreational tourism'},
                                     {name: 'Environmental tourism'},
                                     {name: 'Historical tourism'},
