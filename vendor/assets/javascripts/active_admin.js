@@ -1,12 +1,10 @@
-//= require active_admin/base
-//= require active_admin_flat_skin
+//= require 'arctic_admin/base'
 //= require_self
-
 $(document).ready(function() {
 
-    $(".site_title").remove();
+    // $(".site_title").remove();
     var jQueryScript = document.createElement('link');
-    jQueryScript.setAttribute('href','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
+    jQueryScript.setAttribute('href','https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.css');
     document.head.appendChild(jQueryScript);
 
 });

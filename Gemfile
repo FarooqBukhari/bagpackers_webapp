@@ -54,8 +54,7 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
-gem 'active_admin_flat_skin'
-
+gem 'arctic_admin'
 
 gem 'simple_recommender'
 gem 'sprockets-rails'
